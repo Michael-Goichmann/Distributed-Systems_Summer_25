@@ -48,7 +48,12 @@ class Process:
         if self.process_id == 0:
             self.consecutive_rounds_without_firework_count = 0
             self.firework_seen_in_current_round_flag = False
-            self.is_first_token_processing_for_p0 = True # New flag for P0
+            self.is_first_token_processing_for_p0 = True 
+            
+            # New attributes for data collection by P0
+            self.total_rounds_completed = 0
+            self.round_start_time = None # Timestamp when P0 sends the token
+            self.round_times_ms = [] # List to store individual round durations in ms
 
     def send_token(self):
         print(f"P{self.process_id}: Sending token to P{self.next_process_id} (port {self.next_process_port})")
@@ -107,10 +112,8 @@ class Process:
             self.has_token = True
             print(f"P0: Starting with the token.")
             sys.stdout.flush()
-            # Add a delay here specifically for P0's first round
-            # to give other processes a chance to set up their listeners.
             if self.n_processes > 1:
-                initial_wait_time = self.n_processes * 0.35 # Adjusted delay factor
+                initial_wait_time = self.n_processes * 0.35 
                 print(f"P0: Initial wait for {initial_wait_time:.2f}s for others to start listening...")
                 sys.stdout.flush()
                 time.sleep(initial_wait_time)
@@ -121,10 +124,15 @@ class Process:
                     if self.process_id == 0:
                         if self.is_first_token_processing_for_p0:
                             print(f"P0: Processing token for the first time (initial possession).")
-                            # Don't update consecutive_rounds_without_firework_count yet.
                             self.is_first_token_processing_for_p0 = False
+                            # round_start_time will be set before sending token
                         else: # Token has completed a round and returned to P0
-                            print(f"P0: Token returned. Firework seen in last round? {self.firework_seen_in_current_round_flag}")
+                            if self.round_start_time is not None:
+                                round_duration_ms = (time.time() - self.round_start_time) * 1000
+                                self.round_times_ms.append(round_duration_ms)
+                            
+                            self.total_rounds_completed += 1
+                            print(f"P0: Token returned. Round {self.total_rounds_completed} completed. Firework seen in last round? {self.firework_seen_in_current_round_flag}")
                             if not self.firework_seen_in_current_round_flag:
                                 self.consecutive_rounds_without_firework_count += 1
                                 print(f"P0: Round ended. No firework. Consecutive no-firework rounds: {self.consecutive_rounds_without_firework_count}/{self.k_rounds_no_firework}")
@@ -138,12 +146,11 @@ class Process:
                                 sys.stdout.flush()
                                 self.multicast_send_socket.sendto(TERMINATE_MSG, (MULTICAST_GROUP, MULTICAST_PORT))
                                 self.terminate_flag.set() 
-                                time.sleep(0.2) # Give time for TERMINATE msg to propagate
+                                time.sleep(0.2) 
                                 break 
                         
-                        self.firework_seen_in_current_round_flag = False # Reset for the new round (or after first processing)
+                        self.firework_seen_in_current_round_flag = False 
 
-                    # Common token handling for all processes
                     print(f"P{self.process_id}: Processing token. Current p = {self.p:.4f}")
                     sys.stdout.flush()
                     
@@ -154,9 +161,11 @@ class Process:
                     if self.p < 1e-9: 
                         self.p = 1e-9
 
+                    if self.process_id == 0: # P0 sets round_start_time just before sending
+                        self.round_start_time = time.time()
+
                     time.sleep(0.1 + random.uniform(0, 0.2)) 
                     self.send_token()
-
                 else: # Wait for token
                     try:
                         self.token_socket.settimeout(0.5) 
@@ -194,6 +203,17 @@ class Process:
             print(f"P{self.process_id}: Run loop finished. Cleaning up...")
             sys.stdout.flush()
             self.terminate_flag.set()
+
+            if self.process_id == 0:
+                min_rt_ms, avg_rt_ms, max_rt_ms = 0.0, 0.0, 0.0
+                if self.round_times_ms:
+                    min_rt_ms = min(self.round_times_ms)
+                    avg_rt_ms = sum(self.round_times_ms) / len(self.round_times_ms)
+                    max_rt_ms = max(self.round_times_ms)
+                
+                # Output data for parsing by the launcher
+                print(f"DATA_OUTPUT:n_processes={self.n_processes},total_rounds={self.total_rounds_completed},min_round_time_ms={min_rt_ms:.2f},avg_round_time_ms={avg_rt_ms:.2f},max_round_time_ms={max_rt_ms:.2f}")
+                sys.stdout.flush()
 
             if self.token_socket.fileno() != -1: self.token_socket.close()
             if self.multicast_send_socket.fileno() != -1: self.multicast_send_socket.close()
