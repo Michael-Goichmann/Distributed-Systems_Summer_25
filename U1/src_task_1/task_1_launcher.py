@@ -68,7 +68,8 @@ def main():
     python_executable = sys.executable
     launcher_dir = os.path.dirname(os.path.abspath(__file__))
     task_1_script_path = os.path.join(launcher_dir, "task_1.py")
-    base_experiment_logs_dir = os.path.join(launcher_dir, "experiment_run_logs")
+    u1_dir = os.path.dirname(launcher_dir)
+    base_experiment_logs_dir = os.path.join(u1_dir, "experiment_run_logs")
     
     os.makedirs(base_experiment_logs_dir, exist_ok=True)
 
@@ -186,7 +187,7 @@ def main():
     finally: # This finally block is for the main try block covering all experiments
         if os.path.isdir(base_experiment_logs_dir):
             print(f"\nAttempting to clean up base log directory: {base_experiment_logs_dir}")
-            time.sleep(2) # Add a 2-second delay for file handles to be released
+            time.sleep(10) # Add a 10-second delay for file handles to be released
             try:
                 shutil.rmtree(base_experiment_logs_dir)
                 print(f"Successfully cleaned up base log directory: {base_experiment_logs_dir}")
