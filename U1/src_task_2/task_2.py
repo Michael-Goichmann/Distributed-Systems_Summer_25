@@ -87,9 +87,16 @@ class Process:
             self.round_times_ms = []
 
     def send_token(self):
-        print(f"P{self.process_id}: Sending token to P{self.next_process_id} ({self.next_ip}:{self.next_process_port})")
+        # Enhanced logging for sending token
+        target_address = (self.next_ip, self.next_process_port)
+        print(f"P{self.process_id}: Preparing to send TOKEN_MSG to P{self.next_process_id} at {target_address}")
         sys.stdout.flush()
-        self.token_socket.sendto(TOKEN_MSG, (self.next_ip, self.next_process_port))
+        try:
+            self.token_socket.sendto(TOKEN_MSG, target_address)
+            print(f"P{self.process_id}: Successfully sent TOKEN_MSG to {target_address}")
+        except socket.error as e:
+            print(f"P{self.process_id}: ERROR sending TOKEN_MSG to {target_address} - {e}", file=sys.stderr)
+        sys.stdout.flush()
         self.has_token = False
 
     def launch_firework(self):
@@ -195,10 +202,16 @@ class Process:
 
                     time.sleep(0.1 + random.uniform(0, 0.2)) 
                     self.send_token()
-                else: 
+                else: # Wait for token
+                    # print(f"P{self.process_id}: Waiting for token...") # Optional: can be noisy
+                    # sys.stdout.flush()
                     try:
-                        self.token_socket.settimeout(0.5) 
+                        self.token_socket.settimeout(0.75) # Slightly increased timeout for clarity in logs
+                        # print(f"P{self.process_id}: Calling recvfrom on {self.my_ip}:{self.listen_port}") # Optional debug
+                        # sys.stdout.flush()
                         data, addr = self.token_socket.recvfrom(1024)
+                        print(f"P{self.process_id}: Received data on token_socket from {addr}. Data: {data.strip()}") # Log any received data
+                        sys.stdout.flush()
                         if not data: 
                             if not self.terminate_flag.is_set():
                                 print(f"P{self.process_id}: Token socket recv gave no data, possibly closed. Breaking.", file=sys.stderr)
@@ -206,11 +219,16 @@ class Process:
                             break
                         message = data.strip()
                         if message == TOKEN_MSG:
+                            print(f"P{self.process_id}: Received TOKEN_MSG from {addr}")
+                            sys.stdout.flush()
                             self.has_token = True
                         else:
-                            print(f"P{self.process_id}: Received unexpected unicast: {message.decode()} from {addr}", file=sys.stderr)
+                            print(f"P{self.process_id}: Received unexpected unicast: {message} from {addr}", file=sys.stderr)
                             sys.stderr.flush()
                     except socket.timeout:
+                        # This is expected if no token arrives, so don't print every time unless debugging heavily
+                        # print(f"P{self.process_id}: Token socket recv timed out.")
+                        # sys.stdout.flush()
                         continue 
                     except OSError as e: 
                         if self.terminate_flag.is_set(): break
