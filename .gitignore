@@ -1,2 +1,5 @@
 U1/process_logs/*
 U1/experiment_run_logs/*
+U1/src_task_1/*.csv
+U1/*.pdf
+*.csv
