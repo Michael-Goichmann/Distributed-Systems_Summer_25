@@ -8,6 +8,25 @@ This folder contains implementations for programming exercises related to distri
 *   **Java (JDK 8 or higher)**: Required for Task 3 & 4.
 *   **Apache Maven**: Required for building and running Task 3 & 4.
 
+## Task 0: Getting started
+
+This project uses the uv package manager. If you do not have uv installed, please
+install it first with:
+
+macOS / Linux
+``` 
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Windows
+```
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+To install dependencies as defined in `uv.lock`
+```
+uv sync
+```
+
 ## Task 1: Local Token Ring Simulation (Python)
 
 Simulates a token ring algorithm locally using UDP sockets for communication.
