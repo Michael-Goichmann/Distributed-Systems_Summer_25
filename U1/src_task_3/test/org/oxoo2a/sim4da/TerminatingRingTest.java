@@ -21,7 +21,11 @@ class TerminatingRingTest {
                 int v = m.queryInteger("token");
                 System.out.println(NodeName() + " received token " + v);
                 m = new Message().add("token", v + 1);
-                sleep(100);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
                 sendBlindly(m, next_node);
                 if (v > 100) {
                     break;

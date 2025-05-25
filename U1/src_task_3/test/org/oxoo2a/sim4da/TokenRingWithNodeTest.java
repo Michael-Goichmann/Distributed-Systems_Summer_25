@@ -33,7 +33,11 @@ class TokenRingWithNodeTest {
                 int v = m.queryInteger("token");
                 System.out.println(NodeName() + " received token " + value);
                 m = new Message().add("token", v + 1);
-                sleep(100);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 sendBlindly(m, next_node);
             }
         }
@@ -45,12 +49,13 @@ class TokenRingWithNodeTest {
         final int ringSize = 5;
         Simulator simulator = Simulator.getInstance();
         TokenRingNode[] nodes = new TokenRingNode[ringSize];
+        
         for (int i = 0; i < ringSize; i++) {
             String node_name = "TokenRingNode_" + i;
-            String next_node = "TokenRingNode_" + (i+1) % ringSize;
+            String next_node = "TokenRingNode_" + ((i+1) % ringSize);
             nodes[i] = new TokenRingNode(node_name, next_node);
-            nodes[i].sleep(1000);
         }
+        
         simulator.simulate(2);
         simulator.shutdown();
     }

@@ -59,18 +59,26 @@ public class Network {
 
     public void send ( Message message, NetworkConnection sender ) {
         for (Node n : nodes.values()) {
-            if (n.nc != sender) {
-                n.np.deliver(message, sender);
+            if (n.nc != sender) { 
+                Message copy = new Message(message); 
+                copy.addHeader("sender", sender.NodeName()); 
+                n.np.deliver(copy, sender);
             }
         }
     }
 
     public Message receive(NetworkConnection receiver) {
         Node n = nodes.get(receiver.NodeName());
+        if (n == null || n.np == null) {
+            logger.error("NodeProxy not found for receiver: " + receiver.NodeName() + ". This might happen if shutdown occurred.");
+            return null;
+        }
         Message m = n.np.receive();
         return m;
     }
 
     public void shutdown() {
+        nodes.clear(); 
+        logger.info("Network shutdown and nodes cleared.");
     }
 }

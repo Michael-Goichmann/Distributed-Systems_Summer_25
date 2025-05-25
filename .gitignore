@@ -43,3 +43,4 @@ U1/*.pdf
 U1/src_task_3/resources/
 **/lib/
 *.iml
+.venv

@@ -1,0 +1,1091 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.oxoo2a.sim4da.OneRingToRuleThemAll" time="0.331" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\mgoic\Dropbox\Universität_Stuff\Master\Semester_3\Verteilte_Systeme\Uebung\U1\src_task_3\target\test-classes;C:\Users\mgoic\Dropbox\Universität_Stuff\Master\Semester_3\Verteilte_Systeme\Uebung\U1\src_task_3\target\classes;C:\Users\mgoic\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\mgoic\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\mgoic\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\mgoic\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\mgoic\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\mgoic\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\mgoic\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\mgoic\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\mgoic\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.14.2\jackson-databind-2.14.2.jar;C:\Users\mgoic\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.14.2\jackson-annotations-2.14.2.jar;C:\Users\mgoic\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.14.2\jackson-core-2.14.2.jar;C:\Users\mgoic\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\mgoic\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\mgoic\.m2\repository\org\slf4j\slf4j-api\2.0.7\slf4j-api-2.0.7.jar;"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Europe/Berlin"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="DE"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\mgoic\AppData\Local\Temp\surefire10643060169486970745\surefirebooter-20250525183940556_3.jar C:\Users\mgoic\AppData\Local\Temp\surefire10643060169486970745 2025-05-25T18-39-40_441-jvmRun1 surefire-20250525183940556_1tmp surefire_0-20250525183940556_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="test" value="OneRingToRuleThemAll"/>
+    <property name="surefire.test.class.path" value="C:\Users\mgoic\Dropbox\Universität_Stuff\Master\Semester_3\Verteilte_Systeme\Uebung\U1\src_task_3\target\test-classes;C:\Users\mgoic\Dropbox\Universität_Stuff\Master\Semester_3\Verteilte_Systeme\Uebung\U1\src_task_3\target\classes;C:\Users\mgoic\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\mgoic\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\mgoic\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\mgoic\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\mgoic\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\mgoic\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\mgoic\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\mgoic\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\mgoic\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.14.2\jackson-databind-2.14.2.jar;C:\Users\mgoic\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.14.2\jackson-annotations-2.14.2.jar;C:\Users\mgoic\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.14.2\jackson-core-2.14.2.jar;C:\Users\mgoic\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\mgoic\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\mgoic\.m2\repository\org\slf4j\slf4j-api\2.0.7\slf4j-api-2.0.7.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\mgoic"/>
+    <property name="user.language" value="de"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-04-16"/>
+    <property name="java.home" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\mgoic\Dropbox\Universität_Stuff\Master\Semester_3\Verteilte_Systeme\Uebung\U1\src_task_3"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\mgoic\AppData\Local\Temp\surefire10643060169486970745\surefirebooter-20250525183940556_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.3+9-LTS"/>
+    <property name="user.name" value="mgoic"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.3+9"/>
+    <property name="localRepository" value="C:\Users\mgoic\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\mgoic\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.3"/>
+    <property name="user.dir" value="C:\Users\mgoic\Dropbox\Universität_Stuff\Master\Semester_3\Verteilte_Systeme\Uebung\U1\src_task_3"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="35524"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\WindowsApps\Microsoft.PowerShell_7.5.1.0_x64__8wekyb3d8bbwe;C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot\bin;C:\Python312\Scripts\;C:\Python312\;C:\Program Files\Eclipse Adoptium\jdk-18.0.2.101-hotspot\bin;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\AOMEI\AOMEI Backupper\7.2.0;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\gnupg\bin;C:\Program Files (x86)\SQL Anywhere 17\Bin32\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Vagrant\bin;C:\hadoop-3.4.1\bin;C:\Users\mgoic\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\mgoic\AppData\Local\Programs\Python\Python311\;C:\Users\mgoic\scoop\shims;C:\Users\mgoic\.pyenv\pyenv-win\bin;C:\Users\mgoic\.pyenv\pyenv-win\shims;C:\Users\mgoic\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\mgoic\AppData\Local\Programs\Python\Python310\;C:\Users\mgoic\AppData\Local\Microsoft\WindowsApps;C:\Users\mgoic\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mgoic\AppData\Local\Programs\oh-my-posh\bin;C:\Users\mgoic\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\mgoic\AppData\Roaming\npm;c:\users\mgoic\.local\bin;C:\Users\mgoic\.dotnet\tools;C:\Users\mgoic\AppData\Local\GitHubDesktop\bin;C:\texlive\2024\bin\windows;C:\Users\mgoic\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Tesseract-OCR;C:\Program Files\apache-maven-3.9.9\bin;;c:\Users\mgoic\.vscode\extensions\ms-python.debugpy-2025.8.0-win32-x64\bundled\scripts\noConfigScripts;c:\Users\mgoic\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.3+9-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="testTask1SimulationExperiment" classname="org.oxoo2a.sim4da.OneRingToRuleThemAll" time="0.312">
+    <system-out><![CDATA[Starting Task 1 Simulation Experiment via JUnit Test.
+Parameters: n_values=16, k=3, p_initial=0,5000, repetitions=1, output_csv=experiment_results_task3_junit_larger.csv
+
+Running experiment for n = 16, Repetition 1/1
+sim4da Summer 2025
+18:39:41.179 [main] INFO org.oxoo2a.sim4da.sim4da -- sim4da Summer 2025 - Simulation instance created.
+18:39:41.187 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_0
+18:39:41.189 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_1
+18:39:41.189 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_2
+18:39:41.189 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_3
+18:39:41.190 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_4
+18:39:41.190 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_5
+18:39:41.190 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_6
+18:39:41.190 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_7
+18:39:41.190 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_8
+18:39:41.190 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_9
+18:39:41.191 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_10
+18:39:41.191 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_11
+18:39:41.191 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_12
+18:39:41.191 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_13
+18:39:41.191 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_14
+18:39:41.191 [main] DEBUG org.oxoo2a.sim4da.Network -- Registering connection for Node_15
+18:39:41.191 [main] INFO org.oxoo2a.sim4da.sim4da -- Simulator prepared for new simulation run.
+18:39:41.191 [main] INFO org.oxoo2a.sim4da.sim4da -- Starting simulation. Waiting for all nodes to complete.
+18:39:41.192 [Thread-15] INFO Node_14 -- P14: Engaging. n=16, k=3, p_initial=0.5. Next is Node_15.
+18:39:41.192 [Thread-14] INFO Node_13 -- P13: Engaging. n=16, k=3, p_initial=0.5. Next is Node_14.
+18:39:41.192 [Thread-16] INFO Node_15 -- P15: Engaging. n=16, k=3, p_initial=0.5. Next is Node_0.
+18:39:41.192 [Thread-5] INFO Node_4 -- P4: Engaging. n=16, k=3, p_initial=0.5. Next is Node_5.
+18:39:41.192 [Thread-4] INFO Node_3 -- P3: Engaging. n=16, k=3, p_initial=0.5. Next is Node_4.
+18:39:41.192 [Thread-9] INFO Node_8 -- P8: Engaging. n=16, k=3, p_initial=0.5. Next is Node_9.
+18:39:41.192 [Thread-2] INFO Node_1 -- P1: Engaging. n=16, k=3, p_initial=0.5. Next is Node_2.
+18:39:41.192 [Thread-13] INFO Node_12 -- P12: Engaging. n=16, k=3, p_initial=0.5. Next is Node_13.
+18:39:41.192 [Thread-8] INFO Node_7 -- P7: Engaging. n=16, k=3, p_initial=0.5. Next is Node_8.
+18:39:41.192 [Thread-11] INFO Node_10 -- P10: Engaging. n=16, k=3, p_initial=0.5. Next is Node_11.
+18:39:41.192 [Thread-6] INFO Node_5 -- P5: Engaging. n=16, k=3, p_initial=0.5. Next is Node_6.
+18:39:41.192 [Thread-3] INFO Node_2 -- P2: Engaging. n=16, k=3, p_initial=0.5. Next is Node_3.
+18:39:41.192 [Thread-12] INFO Node_11 -- P11: Engaging. n=16, k=3, p_initial=0.5. Next is Node_12.
+18:39:41.192 [Thread-1] INFO Node_0 -- P0: Engaging. n=16, k=3, p_initial=0.5. Next is Node_1.
+18:39:41.192 [Thread-10] INFO Node_9 -- P9: Engaging. n=16, k=3, p_initial=0.5. Next is Node_10.
+18:39:41.192 [Thread-7] INFO Node_6 -- P6: Engaging. n=16, k=3, p_initial=0.5. Next is Node_7.
+18:39:41.195 [Thread-1] INFO Node_0 -- P0: Starting with the token.
+18:39:41.315 [Thread-1] DEBUG Node_0 -- Sending message to Node_1
+18:39:41.316 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.316 [Thread-2] DEBUG Node_1 -- P1: Received 'TOKEN' from Node_0
+18:39:41.316 [Thread-2] DEBUG Node_1 -- P1: Processing token. Current p=0.5
+18:39:41.316 [Thread-2] DEBUG Node_1 -- P1: Sending TOKEN to Node_2
+18:39:41.316 [Thread-2] DEBUG Node_1 -- Sending message to Node_2
+18:39:41.316 [Thread-3] DEBUG Node_2 -- Received message from Node_1
+18:39:41.316 [Thread-3] DEBUG Node_2 -- P2: Received 'TOKEN' from Node_1
+18:39:41.316 [Thread-3] DEBUG Node_2 -- P2: Processing token. Current p=0.5
+18:39:41.316 [Thread-3] DEBUG Node_2 -- P2: Sending TOKEN to Node_3
+18:39:41.316 [Thread-3] DEBUG Node_2 -- Sending message to Node_3
+18:39:41.317 [Thread-4] DEBUG Node_3 -- Received message from Node_2
+18:39:41.317 [Thread-4] DEBUG Node_3 -- P3: Received 'TOKEN' from Node_2
+18:39:41.317 [Thread-4] DEBUG Node_3 -- P3: Processing token. Current p=0.5
+18:39:41.317 [Thread-4] INFO Node_3 -- P3: Launching FIREWORK! (current p=0.5)
+18:39:41.317 [Thread-4] DEBUG Node_3 -- Broadcasting message
+18:39:41.317 [Thread-15] DEBUG Node_14 -- Received message from Node_3
+18:39:41.317 [Thread-3] DEBUG Node_2 -- Received message from Node_3
+18:39:41.317 [Thread-1] DEBUG Node_0 -- Received message from Node_3
+18:39:41.317 [Thread-12] DEBUG Node_11 -- Received message from Node_3
+18:39:41.317 [Thread-4] DEBUG Node_3 -- P3: Sending TOKEN to Node_4
+18:39:41.317 [Thread-16] DEBUG Node_15 -- Received message from Node_3
+18:39:41.317 [Thread-2] DEBUG Node_1 -- Received message from Node_3
+18:39:41.317 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_3
+18:39:41.317 [Thread-5] DEBUG Node_4 -- Received message from Node_3
+18:39:41.317 [Thread-10] DEBUG Node_9 -- Received message from Node_3
+18:39:41.317 [Thread-7] DEBUG Node_6 -- Received message from Node_3
+18:39:41.317 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_3
+18:39:41.317 [Thread-11] DEBUG Node_10 -- Received message from Node_3
+18:39:41.317 [Thread-6] DEBUG Node_5 -- Received message from Node_3
+18:39:41.317 [Thread-13] DEBUG Node_12 -- Received message from Node_3
+18:39:41.317 [Thread-9] DEBUG Node_8 -- Received message from Node_3
+18:39:41.317 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_3
+18:39:41.317 [Thread-8] DEBUG Node_7 -- Received message from Node_3
+18:39:41.317 [Thread-14] DEBUG Node_13 -- Received message from Node_3
+18:39:41.317 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_3
+18:39:41.317 [Thread-4] DEBUG Node_3 -- Sending message to Node_4
+18:39:41.317 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_3
+18:39:41.317 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_3
+18:39:41.317 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.318 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_3
+18:39:41.318 [Thread-5] DEBUG Node_4 -- Received message from Node_3
+18:39:41.319 [Thread-5] DEBUG Node_4 -- P4: Received 'TOKEN' from Node_3
+18:39:41.319 [Thread-5] DEBUG Node_4 -- P4: Processing token. Current p=0.5
+18:39:41.319 [Thread-5] DEBUG Node_4 -- P4: Sending TOKEN to Node_5
+18:39:41.319 [Thread-5] DEBUG Node_4 -- Sending message to Node_5
+18:39:41.319 [Thread-6] DEBUG Node_5 -- Received message from Node_4
+18:39:41.319 [Thread-6] DEBUG Node_5 -- P5: Received 'TOKEN' from Node_4
+18:39:41.319 [Thread-6] DEBUG Node_5 -- P5: Processing token. Current p=0.5
+18:39:41.319 [Thread-6] INFO Node_5 -- P5: Launching FIREWORK! (current p=0.5)
+18:39:41.319 [Thread-6] DEBUG Node_5 -- Broadcasting message
+18:39:41.319 [Thread-15] DEBUG Node_14 -- Received message from Node_5
+18:39:41.319 [Thread-3] DEBUG Node_2 -- Received message from Node_5
+18:39:41.319 [Thread-5] DEBUG Node_4 -- Received message from Node_5
+18:39:41.319 [Thread-10] DEBUG Node_9 -- Received message from Node_5
+18:39:41.319 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_5
+18:39:41.319 [Thread-16] DEBUG Node_15 -- Received message from Node_5
+18:39:41.320 [Thread-14] DEBUG Node_13 -- Received message from Node_5
+18:39:41.319 [Thread-2] DEBUG Node_1 -- Received message from Node_5
+18:39:41.319 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_5
+18:39:41.319 [Thread-1] DEBUG Node_0 -- Received message from Node_5
+18:39:41.319 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_5
+18:39:41.319 [Thread-4] DEBUG Node_3 -- Received message from Node_5
+18:39:41.319 [Thread-7] DEBUG Node_6 -- Received message from Node_5
+18:39:41.319 [Thread-11] DEBUG Node_10 -- Received message from Node_5
+18:39:41.319 [Thread-12] DEBUG Node_11 -- Received message from Node_5
+18:39:41.320 [Thread-9] DEBUG Node_8 -- Received message from Node_5
+18:39:41.320 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-6] DEBUG Node_5 -- P5: Sending TOKEN to Node_6
+18:39:41.320 [Thread-8] DEBUG Node_7 -- Received message from Node_5
+18:39:41.320 [Thread-13] DEBUG Node_12 -- Received message from Node_5
+18:39:41.319 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_5
+18:39:41.321 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.320 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-6] DEBUG Node_5 -- Sending message to Node_6
+18:39:41.320 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_5
+18:39:41.320 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_5
+18:39:41.321 [Thread-7] DEBUG Node_6 -- Received message from Node_5
+18:39:41.321 [Thread-7] DEBUG Node_6 -- P6: Received 'TOKEN' from Node_5
+18:39:41.321 [Thread-7] DEBUG Node_6 -- P6: Processing token. Current p=0.5
+18:39:41.321 [Thread-7] DEBUG Node_6 -- P6: Sending TOKEN to Node_7
+18:39:41.321 [Thread-7] DEBUG Node_6 -- Sending message to Node_7
+18:39:41.321 [Thread-8] DEBUG Node_7 -- Received message from Node_6
+18:39:41.321 [Thread-8] DEBUG Node_7 -- P7: Received 'TOKEN' from Node_6
+18:39:41.321 [Thread-8] DEBUG Node_7 -- P7: Processing token. Current p=0.5
+18:39:41.321 [Thread-8] DEBUG Node_7 -- P7: Sending TOKEN to Node_8
+18:39:41.321 [Thread-8] DEBUG Node_7 -- Sending message to Node_8
+18:39:41.321 [Thread-9] DEBUG Node_8 -- Received message from Node_7
+18:39:41.321 [Thread-9] DEBUG Node_8 -- P8: Received 'TOKEN' from Node_7
+18:39:41.321 [Thread-9] DEBUG Node_8 -- P8: Processing token. Current p=0.5
+18:39:41.321 [Thread-9] DEBUG Node_8 -- P8: Sending TOKEN to Node_9
+18:39:41.322 [Thread-9] DEBUG Node_8 -- Sending message to Node_9
+18:39:41.322 [Thread-10] DEBUG Node_9 -- Received message from Node_8
+18:39:41.322 [Thread-10] DEBUG Node_9 -- P9: Received 'TOKEN' from Node_8
+18:39:41.322 [Thread-10] DEBUG Node_9 -- P9: Processing token. Current p=0.5
+18:39:41.322 [Thread-10] DEBUG Node_9 -- P9: Sending TOKEN to Node_10
+18:39:41.322 [Thread-10] DEBUG Node_9 -- Sending message to Node_10
+18:39:41.322 [Thread-11] DEBUG Node_10 -- Received message from Node_9
+18:39:41.322 [Thread-11] DEBUG Node_10 -- P10: Received 'TOKEN' from Node_9
+18:39:41.322 [Thread-11] DEBUG Node_10 -- P10: Processing token. Current p=0.5
+18:39:41.322 [Thread-11] DEBUG Node_10 -- P10: Sending TOKEN to Node_11
+18:39:41.322 [Thread-11] DEBUG Node_10 -- Sending message to Node_11
+18:39:41.322 [Thread-12] DEBUG Node_11 -- Received message from Node_10
+18:39:41.322 [Thread-12] DEBUG Node_11 -- P11: Received 'TOKEN' from Node_10
+18:39:41.322 [Thread-12] DEBUG Node_11 -- P11: Processing token. Current p=0.5
+18:39:41.322 [Thread-12] DEBUG Node_11 -- P11: Sending TOKEN to Node_12
+18:39:41.322 [Thread-12] DEBUG Node_11 -- Sending message to Node_12
+18:39:41.323 [Thread-13] DEBUG Node_12 -- Received message from Node_11
+18:39:41.323 [Thread-13] DEBUG Node_12 -- P12: Received 'TOKEN' from Node_11
+18:39:41.323 [Thread-13] DEBUG Node_12 -- P12: Processing token. Current p=0.5
+18:39:41.323 [Thread-13] INFO Node_12 -- P12: Launching FIREWORK! (current p=0.5)
+18:39:41.323 [Thread-13] DEBUG Node_12 -- Broadcasting message
+18:39:41.323 [Thread-15] DEBUG Node_14 -- Received message from Node_12
+18:39:41.323 [Thread-16] DEBUG Node_15 -- Received message from Node_12
+18:39:41.323 [Thread-1] DEBUG Node_0 -- Received message from Node_12
+18:39:41.323 [Thread-6] DEBUG Node_5 -- Received message from Node_12
+18:39:41.323 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-3] DEBUG Node_2 -- Received message from Node_12
+18:39:41.323 [Thread-2] DEBUG Node_1 -- Received message from Node_12
+18:39:41.323 [Thread-5] DEBUG Node_4 -- Received message from Node_12
+18:39:41.323 [Thread-4] DEBUG Node_3 -- Received message from Node_12
+18:39:41.323 [Thread-10] DEBUG Node_9 -- Received message from Node_12
+18:39:41.323 [Thread-7] DEBUG Node_6 -- Received message from Node_12
+18:39:41.323 [Thread-11] DEBUG Node_10 -- Received message from Node_12
+18:39:41.323 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-12] DEBUG Node_11 -- Received message from Node_12
+18:39:41.323 [Thread-9] DEBUG Node_8 -- Received message from Node_12
+18:39:41.324 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_12
+18:39:41.324 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-8] DEBUG Node_7 -- Received message from Node_12
+18:39:41.323 [Thread-14] DEBUG Node_13 -- Received message from Node_12
+18:39:41.324 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_12
+18:39:41.324 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-13] DEBUG Node_12 -- P12: Sending TOKEN to Node_13
+18:39:41.323 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.323 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_12
+18:39:41.323 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_12
+18:39:41.324 [Thread-13] DEBUG Node_12 -- Sending message to Node_13
+18:39:41.325 [Thread-14] DEBUG Node_13 -- Received message from Node_12
+18:39:41.325 [Thread-14] DEBUG Node_13 -- P13: Received 'TOKEN' from Node_12
+18:39:41.325 [Thread-14] DEBUG Node_13 -- P13: Processing token. Current p=0.5
+18:39:41.325 [Thread-14] DEBUG Node_13 -- P13: Sending TOKEN to Node_14
+18:39:41.325 [Thread-14] DEBUG Node_13 -- Sending message to Node_14
+18:39:41.325 [Thread-15] DEBUG Node_14 -- Received message from Node_13
+18:39:41.325 [Thread-15] DEBUG Node_14 -- P14: Received 'TOKEN' from Node_13
+18:39:41.325 [Thread-15] DEBUG Node_14 -- P14: Processing token. Current p=0.5
+18:39:41.325 [Thread-15] DEBUG Node_14 -- P14: Sending TOKEN to Node_15
+18:39:41.325 [Thread-15] DEBUG Node_14 -- Sending message to Node_15
+18:39:41.325 [Thread-16] DEBUG Node_15 -- Received message from Node_14
+18:39:41.325 [Thread-16] DEBUG Node_15 -- P15: Received 'TOKEN' from Node_14
+18:39:41.325 [Thread-16] DEBUG Node_15 -- P15: Processing token. Current p=0.5
+18:39:41.325 [Thread-16] DEBUG Node_15 -- P15: Sending TOKEN to Node_0
+18:39:41.326 [Thread-16] DEBUG Node_15 -- Sending message to Node_0
+18:39:41.326 [Thread-1] DEBUG Node_0 -- Received message from Node_15
+18:39:41.326 [Thread-1] DEBUG Node_0 -- P0: Received 'TOKEN' from Node_15
+18:39:41.326 [Thread-1] DEBUG Node_0 -- P0: Processing token. Current p=0.5
+18:39:41.326 [Thread-1] INFO Node_0 -- P0: Token returned. Round 1 completed in 130.3683 ms.
+18:39:41.326 [Thread-1] DEBUG Node_0 -- P0 (Task 4): Pausing for 5ms to allow concurrent firework messages to be processed before round evaluation.
+18:39:41.332 [Thread-1] INFO Node_0 -- P0: Round 1 had fireworks. Resetting no-firework count.
+18:39:41.332 [Thread-1] INFO Node_0 -- P0: Launching FIREWORK! (current p=0.5)
+18:39:41.332 [Thread-1] DEBUG Node_0 -- Broadcasting message
+18:39:41.332 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.332 [Thread-5] DEBUG Node_4 -- Received message from Node_0
+18:39:41.332 [Thread-3] DEBUG Node_2 -- Received message from Node_0
+18:39:41.332 [Thread-15] DEBUG Node_14 -- Received message from Node_0
+18:39:41.332 [Thread-16] DEBUG Node_15 -- Received message from Node_0
+18:39:41.332 [Thread-4] DEBUG Node_3 -- Received message from Node_0
+18:39:41.332 [Thread-11] DEBUG Node_10 -- Received message from Node_0
+18:39:41.332 [Thread-7] DEBUG Node_6 -- Received message from Node_0
+18:39:41.332 [Thread-10] DEBUG Node_9 -- Received message from Node_0
+18:39:41.332 [Thread-12] DEBUG Node_11 -- Received message from Node_0
+18:39:41.333 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_0
+18:39:41.332 [Thread-9] DEBUG Node_8 -- Received message from Node_0
+18:39:41.332 [Thread-1] DEBUG Node_0 -- P0: Sending TOKEN to Node_1
+18:39:41.333 [Thread-8] DEBUG Node_7 -- Received message from Node_0
+18:39:41.333 [Thread-6] DEBUG Node_5 -- Received message from Node_0
+18:39:41.333 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-13] DEBUG Node_12 -- Received message from Node_0
+18:39:41.333 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_0
+18:39:41.334 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-14] DEBUG Node_13 -- Received message from Node_0
+18:39:41.333 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_0
+18:39:41.333 [Thread-1] DEBUG Node_0 -- Sending message to Node_1
+18:39:41.333 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_0
+18:39:41.334 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_0
+18:39:41.334 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.334 [Thread-2] DEBUG Node_1 -- P1: Received 'TOKEN' from Node_0
+18:39:41.334 [Thread-2] DEBUG Node_1 -- P1: Processing token. Current p=0.25
+18:39:41.334 [Thread-2] DEBUG Node_1 -- P1: Sending TOKEN to Node_2
+18:39:41.335 [Thread-2] DEBUG Node_1 -- Sending message to Node_2
+18:39:41.335 [Thread-3] DEBUG Node_2 -- Received message from Node_1
+18:39:41.335 [Thread-3] DEBUG Node_2 -- P2: Received 'TOKEN' from Node_1
+18:39:41.335 [Thread-3] DEBUG Node_2 -- P2: Processing token. Current p=0.25
+18:39:41.335 [Thread-3] INFO Node_2 -- P2: Launching FIREWORK! (current p=0.25)
+18:39:41.336 [Thread-3] DEBUG Node_2 -- Broadcasting message
+18:39:41.336 [Thread-2] DEBUG Node_1 -- Received message from Node_2
+18:39:41.336 [Thread-6] DEBUG Node_5 -- Received message from Node_2
+18:39:41.336 [Thread-15] DEBUG Node_14 -- Received message from Node_2
+18:39:41.336 [Thread-4] DEBUG Node_3 -- Received message from Node_2
+18:39:41.336 [Thread-5] DEBUG Node_4 -- Received message from Node_2
+18:39:41.336 [Thread-1] DEBUG Node_0 -- Received message from Node_2
+18:39:41.336 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-10] DEBUG Node_9 -- Received message from Node_2
+18:39:41.336 [Thread-11] DEBUG Node_10 -- Received message from Node_2
+18:39:41.336 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-9] DEBUG Node_8 -- Received message from Node_2
+18:39:41.336 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-12] DEBUG Node_11 -- Received message from Node_2
+18:39:41.336 [Thread-3] DEBUG Node_2 -- P2: Sending TOKEN to Node_3
+18:39:41.336 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-13] DEBUG Node_12 -- Received message from Node_2
+18:39:41.336 [Thread-14] DEBUG Node_13 -- Received message from Node_2
+18:39:41.336 [Thread-16] DEBUG Node_15 -- Received message from Node_2
+18:39:41.336 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-7] DEBUG Node_6 -- Received message from Node_2
+18:39:41.336 [Thread-8] DEBUG Node_7 -- Received message from Node_2
+18:39:41.336 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_2
+18:39:41.337 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.336 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-3] DEBUG Node_2 -- Sending message to Node_3
+18:39:41.336 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_2
+18:39:41.336 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_2
+18:39:41.337 [Thread-4] DEBUG Node_3 -- Received message from Node_2
+18:39:41.336 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_2
+18:39:41.337 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_2
+18:39:41.337 [Thread-4] DEBUG Node_3 -- P3: Received 'TOKEN' from Node_2
+18:39:41.337 [Thread-4] DEBUG Node_3 -- P3: Processing token. Current p=0.25
+18:39:41.337 [Thread-4] DEBUG Node_3 -- P3: Sending TOKEN to Node_4
+18:39:41.337 [Thread-4] DEBUG Node_3 -- Sending message to Node_4
+18:39:41.337 [Thread-5] DEBUG Node_4 -- Received message from Node_3
+18:39:41.337 [Thread-5] DEBUG Node_4 -- P4: Received 'TOKEN' from Node_3
+18:39:41.337 [Thread-5] DEBUG Node_4 -- P4: Processing token. Current p=0.25
+18:39:41.337 [Thread-5] INFO Node_4 -- P4: Launching FIREWORK! (current p=0.25)
+18:39:41.337 [Thread-5] DEBUG Node_4 -- Broadcasting message
+18:39:41.337 [Thread-15] DEBUG Node_14 -- Received message from Node_4
+18:39:41.337 [Thread-16] DEBUG Node_15 -- Received message from Node_4
+18:39:41.337 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_4
+18:39:41.337 [Thread-2] DEBUG Node_1 -- Received message from Node_4
+18:39:41.337 [Thread-4] DEBUG Node_3 -- Received message from Node_4
+18:39:41.337 [Thread-1] DEBUG Node_0 -- Received message from Node_4
+18:39:41.337 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_4
+18:39:41.337 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_4
+18:39:41.337 [Thread-9] DEBUG Node_8 -- Received message from Node_4
+18:39:41.337 [Thread-8] DEBUG Node_7 -- Received message from Node_4
+18:39:41.337 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_4
+18:39:41.337 [Thread-3] DEBUG Node_2 -- Received message from Node_4
+18:39:41.337 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_4
+18:39:41.337 [Thread-7] DEBUG Node_6 -- Received message from Node_4
+18:39:41.338 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_4
+18:39:41.338 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_4
+18:39:41.337 [Thread-11] DEBUG Node_10 -- Received message from Node_4
+18:39:41.337 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_4
+18:39:41.337 [Thread-12] DEBUG Node_11 -- Received message from Node_4
+18:39:41.337 [Thread-6] DEBUG Node_5 -- Received message from Node_4
+18:39:41.337 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.337 [Thread-10] DEBUG Node_9 -- Received message from Node_4
+18:39:41.337 [Thread-13] DEBUG Node_12 -- Received message from Node_4
+18:39:41.337 [Thread-5] DEBUG Node_4 -- P4: Sending TOKEN to Node_5
+18:39:41.337 [Thread-14] DEBUG Node_13 -- Received message from Node_4
+18:39:41.337 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_4
+18:39:41.338 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_4
+18:39:41.338 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_4
+18:39:41.338 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_4
+18:39:41.338 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_4
+18:39:41.338 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_4
+18:39:41.338 [Thread-5] DEBUG Node_4 -- Sending message to Node_5
+18:39:41.338 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_4
+18:39:41.338 [Thread-6] DEBUG Node_5 -- Received message from Node_4
+18:39:41.338 [Thread-6] DEBUG Node_5 -- P5: Received 'TOKEN' from Node_4
+18:39:41.338 [Thread-6] DEBUG Node_5 -- P5: Processing token. Current p=0.25
+18:39:41.338 [Thread-6] DEBUG Node_5 -- P5: Sending TOKEN to Node_6
+18:39:41.338 [Thread-6] DEBUG Node_5 -- Sending message to Node_6
+18:39:41.338 [Thread-7] DEBUG Node_6 -- Received message from Node_5
+18:39:41.338 [Thread-7] DEBUG Node_6 -- P6: Received 'TOKEN' from Node_5
+18:39:41.338 [Thread-7] DEBUG Node_6 -- P6: Processing token. Current p=0.25
+18:39:41.338 [Thread-7] DEBUG Node_6 -- P6: Sending TOKEN to Node_7
+18:39:41.339 [Thread-7] DEBUG Node_6 -- Sending message to Node_7
+18:39:41.339 [Thread-8] DEBUG Node_7 -- Received message from Node_6
+18:39:41.339 [Thread-8] DEBUG Node_7 -- P7: Received 'TOKEN' from Node_6
+18:39:41.339 [Thread-8] DEBUG Node_7 -- P7: Processing token. Current p=0.25
+18:39:41.339 [Thread-8] DEBUG Node_7 -- P7: Sending TOKEN to Node_8
+18:39:41.339 [Thread-8] DEBUG Node_7 -- Sending message to Node_8
+18:39:41.339 [Thread-9] DEBUG Node_8 -- Received message from Node_7
+18:39:41.339 [Thread-9] DEBUG Node_8 -- P8: Received 'TOKEN' from Node_7
+18:39:41.339 [Thread-9] DEBUG Node_8 -- P8: Processing token. Current p=0.25
+18:39:41.339 [Thread-9] INFO Node_8 -- P8: Launching FIREWORK! (current p=0.25)
+18:39:41.339 [Thread-9] DEBUG Node_8 -- Broadcasting message
+18:39:41.339 [Thread-15] DEBUG Node_14 -- Received message from Node_8
+18:39:41.339 [Thread-16] DEBUG Node_15 -- Received message from Node_8
+18:39:41.339 [Thread-11] DEBUG Node_10 -- Received message from Node_8
+18:39:41.339 [Thread-6] DEBUG Node_5 -- Received message from Node_8
+18:39:41.339 [Thread-3] DEBUG Node_2 -- Received message from Node_8
+18:39:41.339 [Thread-2] DEBUG Node_1 -- Received message from Node_8
+18:39:41.339 [Thread-4] DEBUG Node_3 -- Received message from Node_8
+18:39:41.339 [Thread-1] DEBUG Node_0 -- Received message from Node_8
+18:39:41.339 [Thread-10] DEBUG Node_9 -- Received message from Node_8
+18:39:41.340 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_8
+18:39:41.340 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_8
+18:39:41.339 [Thread-7] DEBUG Node_6 -- Received message from Node_8
+18:39:41.339 [Thread-5] DEBUG Node_4 -- Received message from Node_8
+18:39:41.340 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_8
+18:39:41.339 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_8
+18:39:41.339 [Thread-12] DEBUG Node_11 -- Received message from Node_8
+18:39:41.339 [Thread-13] DEBUG Node_12 -- Received message from Node_8
+18:39:41.340 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_8
+18:39:41.340 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_8
+18:39:41.339 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_8
+18:39:41.339 [Thread-8] DEBUG Node_7 -- Received message from Node_8
+18:39:41.340 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_8
+18:39:41.339 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_8
+18:39:41.339 [Thread-9] DEBUG Node_8 -- P8: Sending TOKEN to Node_9
+18:39:41.339 [Thread-14] DEBUG Node_13 -- Received message from Node_8
+18:39:41.339 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_8
+18:39:41.339 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_8
+18:39:41.340 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_8
+18:39:41.340 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_8
+18:39:41.340 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.340 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_8
+18:39:41.340 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_8
+18:39:41.340 [Thread-9] DEBUG Node_8 -- Sending message to Node_9
+18:39:41.341 [Thread-10] DEBUG Node_9 -- Received message from Node_8
+18:39:41.341 [Thread-10] DEBUG Node_9 -- P9: Received 'TOKEN' from Node_8
+18:39:41.341 [Thread-10] DEBUG Node_9 -- P9: Processing token. Current p=0.25
+18:39:41.341 [Thread-10] DEBUG Node_9 -- P9: Sending TOKEN to Node_10
+18:39:41.341 [Thread-10] DEBUG Node_9 -- Sending message to Node_10
+18:39:41.341 [Thread-11] DEBUG Node_10 -- Received message from Node_9
+18:39:41.341 [Thread-11] DEBUG Node_10 -- P10: Received 'TOKEN' from Node_9
+18:39:41.342 [Thread-11] DEBUG Node_10 -- P10: Processing token. Current p=0.25
+18:39:41.342 [Thread-11] DEBUG Node_10 -- P10: Sending TOKEN to Node_11
+18:39:41.342 [Thread-11] DEBUG Node_10 -- Sending message to Node_11
+18:39:41.342 [Thread-12] DEBUG Node_11 -- Received message from Node_10
+18:39:41.342 [Thread-12] DEBUG Node_11 -- P11: Received 'TOKEN' from Node_10
+18:39:41.342 [Thread-12] DEBUG Node_11 -- P11: Processing token. Current p=0.25
+18:39:41.342 [Thread-12] DEBUG Node_11 -- P11: Sending TOKEN to Node_12
+18:39:41.342 [Thread-12] DEBUG Node_11 -- Sending message to Node_12
+18:39:41.342 [Thread-13] DEBUG Node_12 -- Received message from Node_11
+18:39:41.342 [Thread-13] DEBUG Node_12 -- P12: Received 'TOKEN' from Node_11
+18:39:41.342 [Thread-13] DEBUG Node_12 -- P12: Processing token. Current p=0.25
+18:39:41.342 [Thread-13] DEBUG Node_12 -- P12: Sending TOKEN to Node_13
+18:39:41.342 [Thread-13] DEBUG Node_12 -- Sending message to Node_13
+18:39:41.342 [Thread-14] DEBUG Node_13 -- Received message from Node_12
+18:39:41.342 [Thread-14] DEBUG Node_13 -- P13: Received 'TOKEN' from Node_12
+18:39:41.342 [Thread-14] DEBUG Node_13 -- P13: Processing token. Current p=0.25
+18:39:41.342 [Thread-14] DEBUG Node_13 -- P13: Sending TOKEN to Node_14
+18:39:41.342 [Thread-14] DEBUG Node_13 -- Sending message to Node_14
+18:39:41.342 [Thread-15] DEBUG Node_14 -- Received message from Node_13
+18:39:41.343 [Thread-15] DEBUG Node_14 -- P14: Received 'TOKEN' from Node_13
+18:39:41.343 [Thread-15] DEBUG Node_14 -- P14: Processing token. Current p=0.25
+18:39:41.343 [Thread-15] INFO Node_14 -- P14: Launching FIREWORK! (current p=0.25)
+18:39:41.343 [Thread-15] DEBUG Node_14 -- Broadcasting message
+18:39:41.343 [Thread-3] DEBUG Node_2 -- Received message from Node_14
+18:39:41.343 [Thread-2] DEBUG Node_1 -- Received message from Node_14
+18:39:41.343 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-5] DEBUG Node_4 -- Received message from Node_14
+18:39:41.343 [Thread-11] DEBUG Node_10 -- Received message from Node_14
+18:39:41.343 [Thread-16] DEBUG Node_15 -- Received message from Node_14
+18:39:41.343 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-15] DEBUG Node_14 -- P14: Sending TOKEN to Node_15
+18:39:41.343 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-9] DEBUG Node_8 -- Received message from Node_14
+18:39:41.343 [Thread-10] DEBUG Node_9 -- Received message from Node_14
+18:39:41.343 [Thread-14] DEBUG Node_13 -- Received message from Node_14
+18:39:41.343 [Thread-7] DEBUG Node_6 -- Received message from Node_14
+18:39:41.343 [Thread-13] DEBUG Node_12 -- Received message from Node_14
+18:39:41.343 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-1] DEBUG Node_0 -- Received message from Node_14
+18:39:41.343 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.343 [Thread-4] DEBUG Node_3 -- Received message from Node_14
+18:39:41.343 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-6] DEBUG Node_5 -- Received message from Node_14
+18:39:41.343 [Thread-12] DEBUG Node_11 -- Received message from Node_14
+18:39:41.343 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-8] DEBUG Node_7 -- Received message from Node_14
+18:39:41.343 [Thread-15] DEBUG Node_14 -- Sending message to Node_15
+18:39:41.343 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_14
+18:39:41.343 [Thread-16] DEBUG Node_15 -- Received message from Node_14
+18:39:41.344 [Thread-16] DEBUG Node_15 -- P15: Received 'TOKEN' from Node_14
+18:39:41.344 [Thread-16] DEBUG Node_15 -- P15: Processing token. Current p=0.25
+18:39:41.344 [Thread-16] DEBUG Node_15 -- P15: Sending TOKEN to Node_0
+18:39:41.344 [Thread-16] DEBUG Node_15 -- Sending message to Node_0
+18:39:41.344 [Thread-1] DEBUG Node_0 -- Received message from Node_15
+18:39:41.344 [Thread-1] DEBUG Node_0 -- P0: Received 'TOKEN' from Node_15
+18:39:41.344 [Thread-1] DEBUG Node_0 -- P0: Processing token. Current p=0.25
+18:39:41.344 [Thread-1] INFO Node_0 -- P0: Token returned. Round 2 completed in 12.0496 ms.
+18:39:41.344 [Thread-1] DEBUG Node_0 -- P0 (Task 4): Pausing for 5ms to allow concurrent firework messages to be processed before round evaluation.
+18:39:41.351 [Thread-1] INFO Node_0 -- P0: Round 2 had fireworks. Resetting no-firework count.
+18:39:41.351 [Thread-1] DEBUG Node_0 -- P0: Sending TOKEN to Node_1
+18:39:41.351 [Thread-1] DEBUG Node_0 -- Sending message to Node_1
+18:39:41.351 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.351 [Thread-2] DEBUG Node_1 -- P1: Received 'TOKEN' from Node_0
+18:39:41.351 [Thread-2] DEBUG Node_1 -- P1: Processing token. Current p=0.125
+18:39:41.351 [Thread-2] DEBUG Node_1 -- P1: Sending TOKEN to Node_2
+18:39:41.351 [Thread-2] DEBUG Node_1 -- Sending message to Node_2
+18:39:41.351 [Thread-3] DEBUG Node_2 -- Received message from Node_1
+18:39:41.351 [Thread-3] DEBUG Node_2 -- P2: Received 'TOKEN' from Node_1
+18:39:41.351 [Thread-3] DEBUG Node_2 -- P2: Processing token. Current p=0.125
+18:39:41.351 [Thread-3] DEBUG Node_2 -- P2: Sending TOKEN to Node_3
+18:39:41.351 [Thread-3] DEBUG Node_2 -- Sending message to Node_3
+18:39:41.351 [Thread-4] DEBUG Node_3 -- Received message from Node_2
+18:39:41.351 [Thread-4] DEBUG Node_3 -- P3: Received 'TOKEN' from Node_2
+18:39:41.351 [Thread-4] DEBUG Node_3 -- P3: Processing token. Current p=0.125
+18:39:41.351 [Thread-4] DEBUG Node_3 -- P3: Sending TOKEN to Node_4
+18:39:41.351 [Thread-4] DEBUG Node_3 -- Sending message to Node_4
+18:39:41.351 [Thread-5] DEBUG Node_4 -- Received message from Node_3
+18:39:41.351 [Thread-5] DEBUG Node_4 -- P4: Received 'TOKEN' from Node_3
+18:39:41.351 [Thread-5] DEBUG Node_4 -- P4: Processing token. Current p=0.125
+18:39:41.351 [Thread-5] DEBUG Node_4 -- P4: Sending TOKEN to Node_5
+18:39:41.351 [Thread-5] DEBUG Node_4 -- Sending message to Node_5
+18:39:41.351 [Thread-6] DEBUG Node_5 -- Received message from Node_4
+18:39:41.351 [Thread-6] DEBUG Node_5 -- P5: Received 'TOKEN' from Node_4
+18:39:41.351 [Thread-6] DEBUG Node_5 -- P5: Processing token. Current p=0.125
+18:39:41.351 [Thread-6] DEBUG Node_5 -- P5: Sending TOKEN to Node_6
+18:39:41.351 [Thread-6] DEBUG Node_5 -- Sending message to Node_6
+18:39:41.351 [Thread-7] DEBUG Node_6 -- Received message from Node_5
+18:39:41.351 [Thread-7] DEBUG Node_6 -- P6: Received 'TOKEN' from Node_5
+18:39:41.351 [Thread-7] DEBUG Node_6 -- P6: Processing token. Current p=0.125
+18:39:41.352 [Thread-7] DEBUG Node_6 -- P6: Sending TOKEN to Node_7
+18:39:41.352 [Thread-7] DEBUG Node_6 -- Sending message to Node_7
+18:39:41.352 [Thread-8] DEBUG Node_7 -- Received message from Node_6
+18:39:41.352 [Thread-8] DEBUG Node_7 -- P7: Received 'TOKEN' from Node_6
+18:39:41.352 [Thread-8] DEBUG Node_7 -- P7: Processing token. Current p=0.125
+18:39:41.352 [Thread-8] DEBUG Node_7 -- P7: Sending TOKEN to Node_8
+18:39:41.352 [Thread-8] DEBUG Node_7 -- Sending message to Node_8
+18:39:41.352 [Thread-9] DEBUG Node_8 -- Received message from Node_7
+18:39:41.352 [Thread-9] DEBUG Node_8 -- P8: Received 'TOKEN' from Node_7
+18:39:41.352 [Thread-9] DEBUG Node_8 -- P8: Processing token. Current p=0.125
+18:39:41.352 [Thread-9] DEBUG Node_8 -- P8: Sending TOKEN to Node_9
+18:39:41.352 [Thread-9] DEBUG Node_8 -- Sending message to Node_9
+18:39:41.352 [Thread-10] DEBUG Node_9 -- Received message from Node_8
+18:39:41.352 [Thread-10] DEBUG Node_9 -- P9: Received 'TOKEN' from Node_8
+18:39:41.352 [Thread-10] DEBUG Node_9 -- P9: Processing token. Current p=0.125
+18:39:41.352 [Thread-10] DEBUG Node_9 -- P9: Sending TOKEN to Node_10
+18:39:41.352 [Thread-10] DEBUG Node_9 -- Sending message to Node_10
+18:39:41.352 [Thread-11] DEBUG Node_10 -- Received message from Node_9
+18:39:41.352 [Thread-11] DEBUG Node_10 -- P10: Received 'TOKEN' from Node_9
+18:39:41.352 [Thread-11] DEBUG Node_10 -- P10: Processing token. Current p=0.125
+18:39:41.352 [Thread-11] INFO Node_10 -- P10: Launching FIREWORK! (current p=0.125)
+18:39:41.352 [Thread-11] DEBUG Node_10 -- Broadcasting message
+18:39:41.352 [Thread-15] DEBUG Node_14 -- Received message from Node_10
+18:39:41.352 [Thread-16] DEBUG Node_15 -- Received message from Node_10
+18:39:41.352 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-3] DEBUG Node_2 -- Received message from Node_10
+18:39:41.352 [Thread-5] DEBUG Node_4 -- Received message from Node_10
+18:39:41.352 [Thread-1] DEBUG Node_0 -- Received message from Node_10
+18:39:41.352 [Thread-10] DEBUG Node_9 -- Received message from Node_10
+18:39:41.352 [Thread-2] DEBUG Node_1 -- Received message from Node_10
+18:39:41.352 [Thread-13] DEBUG Node_12 -- Received message from Node_10
+18:39:41.352 [Thread-11] DEBUG Node_10 -- P10: Sending TOKEN to Node_11
+18:39:41.352 [Thread-12] DEBUG Node_11 -- Received message from Node_10
+18:39:41.352 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-4] DEBUG Node_3 -- Received message from Node_10
+18:39:41.352 [Thread-7] DEBUG Node_6 -- Received message from Node_10
+18:39:41.352 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-6] DEBUG Node_5 -- Received message from Node_10
+18:39:41.352 [Thread-9] DEBUG Node_8 -- Received message from Node_10
+18:39:41.352 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-8] DEBUG Node_7 -- Received message from Node_10
+18:39:41.352 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-14] DEBUG Node_13 -- Received message from Node_10
+18:39:41.352 [Thread-2] DEBUG Node_1 -- P1: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-11] DEBUG Node_10 -- Sending message to Node_11
+18:39:41.352 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.352 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_10
+18:39:41.352 [Thread-12] DEBUG Node_11 -- Received message from Node_10
+18:39:41.353 [Thread-12] DEBUG Node_11 -- P11: Received 'TOKEN' from Node_10
+18:39:41.353 [Thread-12] DEBUG Node_11 -- P11: Processing token. Current p=0.125
+18:39:41.353 [Thread-12] DEBUG Node_11 -- P11: Sending TOKEN to Node_12
+18:39:41.353 [Thread-12] DEBUG Node_11 -- Sending message to Node_12
+18:39:41.353 [Thread-13] DEBUG Node_12 -- Received message from Node_11
+18:39:41.353 [Thread-13] DEBUG Node_12 -- P12: Received 'TOKEN' from Node_11
+18:39:41.353 [Thread-13] DEBUG Node_12 -- P12: Processing token. Current p=0.125
+18:39:41.353 [Thread-13] DEBUG Node_12 -- P12: Sending TOKEN to Node_13
+18:39:41.353 [Thread-13] DEBUG Node_12 -- Sending message to Node_13
+18:39:41.353 [Thread-14] DEBUG Node_13 -- Received message from Node_12
+18:39:41.353 [Thread-14] DEBUG Node_13 -- P13: Received 'TOKEN' from Node_12
+18:39:41.353 [Thread-14] DEBUG Node_13 -- P13: Processing token. Current p=0.125
+18:39:41.353 [Thread-14] DEBUG Node_13 -- P13: Sending TOKEN to Node_14
+18:39:41.353 [Thread-14] DEBUG Node_13 -- Sending message to Node_14
+18:39:41.353 [Thread-15] DEBUG Node_14 -- Received message from Node_13
+18:39:41.353 [Thread-15] DEBUG Node_14 -- P14: Received 'TOKEN' from Node_13
+18:39:41.353 [Thread-15] DEBUG Node_14 -- P14: Processing token. Current p=0.125
+18:39:41.353 [Thread-15] DEBUG Node_14 -- P14: Sending TOKEN to Node_15
+18:39:41.353 [Thread-15] DEBUG Node_14 -- Sending message to Node_15
+18:39:41.353 [Thread-16] DEBUG Node_15 -- Received message from Node_14
+18:39:41.353 [Thread-16] DEBUG Node_15 -- P15: Received 'TOKEN' from Node_14
+18:39:41.353 [Thread-16] DEBUG Node_15 -- P15: Processing token. Current p=0.125
+18:39:41.353 [Thread-16] DEBUG Node_15 -- P15: Sending TOKEN to Node_0
+18:39:41.353 [Thread-16] DEBUG Node_15 -- Sending message to Node_0
+18:39:41.353 [Thread-1] DEBUG Node_0 -- Received message from Node_15
+18:39:41.353 [Thread-1] DEBUG Node_0 -- P0: Received 'TOKEN' from Node_15
+18:39:41.353 [Thread-1] DEBUG Node_0 -- P0: Processing token. Current p=0.125
+18:39:41.353 [Thread-1] INFO Node_0 -- P0: Token returned. Round 3 completed in 2.5584 ms.
+18:39:41.353 [Thread-1] DEBUG Node_0 -- P0 (Task 4): Pausing for 5ms to allow concurrent firework messages to be processed before round evaluation.
+18:39:41.359 [Thread-1] INFO Node_0 -- P0: Round 3 had fireworks. Resetting no-firework count.
+18:39:41.359 [Thread-1] DEBUG Node_0 -- P0: Sending TOKEN to Node_1
+18:39:41.359 [Thread-1] DEBUG Node_0 -- Sending message to Node_1
+18:39:41.359 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.359 [Thread-2] DEBUG Node_1 -- P1: Received 'TOKEN' from Node_0
+18:39:41.359 [Thread-2] DEBUG Node_1 -- P1: Processing token. Current p=0.0625
+18:39:41.359 [Thread-2] INFO Node_1 -- P1: Launching FIREWORK! (current p=0.0625)
+18:39:41.359 [Thread-2] DEBUG Node_1 -- Broadcasting message
+18:39:41.359 [Thread-15] DEBUG Node_14 -- Received message from Node_1
+18:39:41.359 [Thread-15] DEBUG Node_14 -- P14: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-3] DEBUG Node_2 -- Received message from Node_1
+18:39:41.359 [Thread-11] DEBUG Node_10 -- Received message from Node_1
+18:39:41.359 [Thread-4] DEBUG Node_3 -- Received message from Node_1
+18:39:41.359 [Thread-11] DEBUG Node_10 -- P10: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-16] DEBUG Node_15 -- Received message from Node_1
+18:39:41.359 [Thread-12] DEBUG Node_11 -- Received message from Node_1
+18:39:41.359 [Thread-16] DEBUG Node_15 -- P15: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-5] DEBUG Node_4 -- Received message from Node_1
+18:39:41.359 [Thread-13] DEBUG Node_12 -- Received message from Node_1
+18:39:41.359 [Thread-8] DEBUG Node_7 -- Received message from Node_1
+18:39:41.359 [Thread-13] DEBUG Node_12 -- P12: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-8] DEBUG Node_7 -- P7: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-7] DEBUG Node_6 -- Received message from Node_1
+18:39:41.359 [Thread-1] DEBUG Node_0 -- Received message from Node_1
+18:39:41.359 [Thread-1] DEBUG Node_0 -- P0: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-1] DEBUG Node_0 -- P0: Noted a FIREWORK broadcast during this round's observation window.
+18:39:41.359 [Thread-10] DEBUG Node_9 -- Received message from Node_1
+18:39:41.359 [Thread-6] DEBUG Node_5 -- Received message from Node_1
+18:39:41.359 [Thread-3] DEBUG Node_2 -- P2: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-4] DEBUG Node_3 -- P3: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-12] DEBUG Node_11 -- P11: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-9] DEBUG Node_8 -- Received message from Node_1
+18:39:41.359 [Thread-9] DEBUG Node_8 -- P8: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-2] DEBUG Node_1 -- P1: Sending TOKEN to Node_2
+18:39:41.359 [Thread-14] DEBUG Node_13 -- Received message from Node_1
+18:39:41.359 [Thread-5] DEBUG Node_4 -- P4: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-7] DEBUG Node_6 -- P6: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-6] DEBUG Node_5 -- P5: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-10] DEBUG Node_9 -- P9: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-14] DEBUG Node_13 -- P13: Received 'FIREWORK' from Node_1
+18:39:41.359 [Thread-2] DEBUG Node_1 -- Sending message to Node_2
+18:39:41.360 [Thread-3] DEBUG Node_2 -- Received message from Node_1
+18:39:41.360 [Thread-3] DEBUG Node_2 -- P2: Received 'TOKEN' from Node_1
+18:39:41.360 [Thread-3] DEBUG Node_2 -- P2: Processing token. Current p=0.0625
+18:39:41.360 [Thread-3] DEBUG Node_2 -- P2: Sending TOKEN to Node_3
+18:39:41.360 [Thread-3] DEBUG Node_2 -- Sending message to Node_3
+18:39:41.360 [Thread-4] DEBUG Node_3 -- Received message from Node_2
+18:39:41.360 [Thread-4] DEBUG Node_3 -- P3: Received 'TOKEN' from Node_2
+18:39:41.360 [Thread-4] DEBUG Node_3 -- P3: Processing token. Current p=0.0625
+18:39:41.360 [Thread-4] DEBUG Node_3 -- P3: Sending TOKEN to Node_4
+18:39:41.360 [Thread-4] DEBUG Node_3 -- Sending message to Node_4
+18:39:41.360 [Thread-5] DEBUG Node_4 -- Received message from Node_3
+18:39:41.360 [Thread-5] DEBUG Node_4 -- P4: Received 'TOKEN' from Node_3
+18:39:41.360 [Thread-5] DEBUG Node_4 -- P4: Processing token. Current p=0.0625
+18:39:41.360 [Thread-5] DEBUG Node_4 -- P4: Sending TOKEN to Node_5
+18:39:41.360 [Thread-5] DEBUG Node_4 -- Sending message to Node_5
+18:39:41.360 [Thread-6] DEBUG Node_5 -- Received message from Node_4
+18:39:41.360 [Thread-6] DEBUG Node_5 -- P5: Received 'TOKEN' from Node_4
+18:39:41.360 [Thread-6] DEBUG Node_5 -- P5: Processing token. Current p=0.0625
+18:39:41.360 [Thread-6] DEBUG Node_5 -- P5: Sending TOKEN to Node_6
+18:39:41.360 [Thread-6] DEBUG Node_5 -- Sending message to Node_6
+18:39:41.360 [Thread-7] DEBUG Node_6 -- Received message from Node_5
+18:39:41.360 [Thread-7] DEBUG Node_6 -- P6: Received 'TOKEN' from Node_5
+18:39:41.360 [Thread-7] DEBUG Node_6 -- P6: Processing token. Current p=0.0625
+18:39:41.360 [Thread-7] DEBUG Node_6 -- P6: Sending TOKEN to Node_7
+18:39:41.360 [Thread-7] DEBUG Node_6 -- Sending message to Node_7
+18:39:41.360 [Thread-8] DEBUG Node_7 -- Received message from Node_6
+18:39:41.360 [Thread-8] DEBUG Node_7 -- P7: Received 'TOKEN' from Node_6
+18:39:41.360 [Thread-8] DEBUG Node_7 -- P7: Processing token. Current p=0.0625
+18:39:41.360 [Thread-8] DEBUG Node_7 -- P7: Sending TOKEN to Node_8
+18:39:41.360 [Thread-8] DEBUG Node_7 -- Sending message to Node_8
+18:39:41.360 [Thread-9] DEBUG Node_8 -- Received message from Node_7
+18:39:41.360 [Thread-9] DEBUG Node_8 -- P8: Received 'TOKEN' from Node_7
+18:39:41.360 [Thread-9] DEBUG Node_8 -- P8: Processing token. Current p=0.0625
+18:39:41.360 [Thread-9] DEBUG Node_8 -- P8: Sending TOKEN to Node_9
+18:39:41.360 [Thread-9] DEBUG Node_8 -- Sending message to Node_9
+18:39:41.360 [Thread-10] DEBUG Node_9 -- Received message from Node_8
+18:39:41.360 [Thread-10] DEBUG Node_9 -- P9: Received 'TOKEN' from Node_8
+18:39:41.360 [Thread-10] DEBUG Node_9 -- P9: Processing token. Current p=0.0625
+18:39:41.360 [Thread-10] DEBUG Node_9 -- P9: Sending TOKEN to Node_10
+18:39:41.360 [Thread-10] DEBUG Node_9 -- Sending message to Node_10
+18:39:41.360 [Thread-11] DEBUG Node_10 -- Received message from Node_9
+18:39:41.360 [Thread-11] DEBUG Node_10 -- P10: Received 'TOKEN' from Node_9
+18:39:41.360 [Thread-11] DEBUG Node_10 -- P10: Processing token. Current p=0.0625
+18:39:41.360 [Thread-11] DEBUG Node_10 -- P10: Sending TOKEN to Node_11
+18:39:41.360 [Thread-11] DEBUG Node_10 -- Sending message to Node_11
+18:39:41.361 [Thread-12] DEBUG Node_11 -- Received message from Node_10
+18:39:41.361 [Thread-12] DEBUG Node_11 -- P11: Received 'TOKEN' from Node_10
+18:39:41.361 [Thread-12] DEBUG Node_11 -- P11: Processing token. Current p=0.0625
+18:39:41.361 [Thread-12] DEBUG Node_11 -- P11: Sending TOKEN to Node_12
+18:39:41.361 [Thread-12] DEBUG Node_11 -- Sending message to Node_12
+18:39:41.361 [Thread-13] DEBUG Node_12 -- Received message from Node_11
+18:39:41.361 [Thread-13] DEBUG Node_12 -- P12: Received 'TOKEN' from Node_11
+18:39:41.361 [Thread-13] DEBUG Node_12 -- P12: Processing token. Current p=0.0625
+18:39:41.361 [Thread-13] DEBUG Node_12 -- P12: Sending TOKEN to Node_13
+18:39:41.361 [Thread-13] DEBUG Node_12 -- Sending message to Node_13
+18:39:41.361 [Thread-14] DEBUG Node_13 -- Received message from Node_12
+18:39:41.361 [Thread-14] DEBUG Node_13 -- P13: Received 'TOKEN' from Node_12
+18:39:41.361 [Thread-14] DEBUG Node_13 -- P13: Processing token. Current p=0.0625
+18:39:41.361 [Thread-14] DEBUG Node_13 -- P13: Sending TOKEN to Node_14
+18:39:41.361 [Thread-14] DEBUG Node_13 -- Sending message to Node_14
+18:39:41.361 [Thread-15] DEBUG Node_14 -- Received message from Node_13
+18:39:41.361 [Thread-15] DEBUG Node_14 -- P14: Received 'TOKEN' from Node_13
+18:39:41.361 [Thread-15] DEBUG Node_14 -- P14: Processing token. Current p=0.0625
+18:39:41.361 [Thread-15] DEBUG Node_14 -- P14: Sending TOKEN to Node_15
+18:39:41.361 [Thread-15] DEBUG Node_14 -- Sending message to Node_15
+18:39:41.361 [Thread-16] DEBUG Node_15 -- Received message from Node_14
+18:39:41.361 [Thread-16] DEBUG Node_15 -- P15: Received 'TOKEN' from Node_14
+18:39:41.361 [Thread-16] DEBUG Node_15 -- P15: Processing token. Current p=0.0625
+18:39:41.361 [Thread-16] DEBUG Node_15 -- P15: Sending TOKEN to Node_0
+18:39:41.361 [Thread-16] DEBUG Node_15 -- Sending message to Node_0
+18:39:41.361 [Thread-1] DEBUG Node_0 -- Received message from Node_15
+18:39:41.361 [Thread-1] DEBUG Node_0 -- P0: Received 'TOKEN' from Node_15
+18:39:41.361 [Thread-1] DEBUG Node_0 -- P0: Processing token. Current p=0.0625
+18:39:41.361 [Thread-1] INFO Node_0 -- P0: Token returned. Round 4 completed in 2.6282 ms.
+18:39:41.361 [Thread-1] DEBUG Node_0 -- P0 (Task 4): Pausing for 5ms to allow concurrent firework messages to be processed before round evaluation.
+18:39:41.367 [Thread-1] INFO Node_0 -- P0: Round 4 had fireworks. Resetting no-firework count.
+18:39:41.367 [Thread-1] DEBUG Node_0 -- P0: Sending TOKEN to Node_1
+18:39:41.367 [Thread-1] DEBUG Node_0 -- Sending message to Node_1
+18:39:41.367 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.367 [Thread-2] DEBUG Node_1 -- P1: Received 'TOKEN' from Node_0
+18:39:41.367 [Thread-2] DEBUG Node_1 -- P1: Processing token. Current p=0.03125
+18:39:41.367 [Thread-2] DEBUG Node_1 -- P1: Sending TOKEN to Node_2
+18:39:41.367 [Thread-2] DEBUG Node_1 -- Sending message to Node_2
+18:39:41.367 [Thread-3] DEBUG Node_2 -- Received message from Node_1
+18:39:41.367 [Thread-3] DEBUG Node_2 -- P2: Received 'TOKEN' from Node_1
+18:39:41.367 [Thread-3] DEBUG Node_2 -- P2: Processing token. Current p=0.03125
+18:39:41.367 [Thread-3] DEBUG Node_2 -- P2: Sending TOKEN to Node_3
+18:39:41.367 [Thread-3] DEBUG Node_2 -- Sending message to Node_3
+18:39:41.367 [Thread-4] DEBUG Node_3 -- Received message from Node_2
+18:39:41.367 [Thread-4] DEBUG Node_3 -- P3: Received 'TOKEN' from Node_2
+18:39:41.367 [Thread-4] DEBUG Node_3 -- P3: Processing token. Current p=0.03125
+18:39:41.367 [Thread-4] DEBUG Node_3 -- P3: Sending TOKEN to Node_4
+18:39:41.367 [Thread-4] DEBUG Node_3 -- Sending message to Node_4
+18:39:41.367 [Thread-5] DEBUG Node_4 -- Received message from Node_3
+18:39:41.367 [Thread-5] DEBUG Node_4 -- P4: Received 'TOKEN' from Node_3
+18:39:41.367 [Thread-5] DEBUG Node_4 -- P4: Processing token. Current p=0.03125
+18:39:41.367 [Thread-5] DEBUG Node_4 -- P4: Sending TOKEN to Node_5
+18:39:41.367 [Thread-5] DEBUG Node_4 -- Sending message to Node_5
+18:39:41.367 [Thread-6] DEBUG Node_5 -- Received message from Node_4
+18:39:41.367 [Thread-6] DEBUG Node_5 -- P5: Received 'TOKEN' from Node_4
+18:39:41.367 [Thread-6] DEBUG Node_5 -- P5: Processing token. Current p=0.03125
+18:39:41.367 [Thread-6] DEBUG Node_5 -- P5: Sending TOKEN to Node_6
+18:39:41.367 [Thread-6] DEBUG Node_5 -- Sending message to Node_6
+18:39:41.367 [Thread-7] DEBUG Node_6 -- Received message from Node_5
+18:39:41.368 [Thread-7] DEBUG Node_6 -- P6: Received 'TOKEN' from Node_5
+18:39:41.368 [Thread-7] DEBUG Node_6 -- P6: Processing token. Current p=0.03125
+18:39:41.368 [Thread-7] DEBUG Node_6 -- P6: Sending TOKEN to Node_7
+18:39:41.368 [Thread-7] DEBUG Node_6 -- Sending message to Node_7
+18:39:41.368 [Thread-8] DEBUG Node_7 -- Received message from Node_6
+18:39:41.368 [Thread-8] DEBUG Node_7 -- P7: Received 'TOKEN' from Node_6
+18:39:41.368 [Thread-8] DEBUG Node_7 -- P7: Processing token. Current p=0.03125
+18:39:41.368 [Thread-8] DEBUG Node_7 -- P7: Sending TOKEN to Node_8
+18:39:41.368 [Thread-8] DEBUG Node_7 -- Sending message to Node_8
+18:39:41.368 [Thread-9] DEBUG Node_8 -- Received message from Node_7
+18:39:41.368 [Thread-9] DEBUG Node_8 -- P8: Received 'TOKEN' from Node_7
+18:39:41.368 [Thread-9] DEBUG Node_8 -- P8: Processing token. Current p=0.03125
+18:39:41.368 [Thread-9] DEBUG Node_8 -- P8: Sending TOKEN to Node_9
+18:39:41.368 [Thread-9] DEBUG Node_8 -- Sending message to Node_9
+18:39:41.368 [Thread-10] DEBUG Node_9 -- Received message from Node_8
+18:39:41.368 [Thread-10] DEBUG Node_9 -- P9: Received 'TOKEN' from Node_8
+18:39:41.368 [Thread-10] DEBUG Node_9 -- P9: Processing token. Current p=0.03125
+18:39:41.368 [Thread-10] DEBUG Node_9 -- P9: Sending TOKEN to Node_10
+18:39:41.368 [Thread-10] DEBUG Node_9 -- Sending message to Node_10
+18:39:41.368 [Thread-11] DEBUG Node_10 -- Received message from Node_9
+18:39:41.368 [Thread-11] DEBUG Node_10 -- P10: Received 'TOKEN' from Node_9
+18:39:41.368 [Thread-11] DEBUG Node_10 -- P10: Processing token. Current p=0.03125
+18:39:41.368 [Thread-11] DEBUG Node_10 -- P10: Sending TOKEN to Node_11
+18:39:41.368 [Thread-11] DEBUG Node_10 -- Sending message to Node_11
+18:39:41.368 [Thread-12] DEBUG Node_11 -- Received message from Node_10
+18:39:41.368 [Thread-12] DEBUG Node_11 -- P11: Received 'TOKEN' from Node_10
+18:39:41.368 [Thread-12] DEBUG Node_11 -- P11: Processing token. Current p=0.03125
+18:39:41.368 [Thread-12] DEBUG Node_11 -- P11: Sending TOKEN to Node_12
+18:39:41.368 [Thread-12] DEBUG Node_11 -- Sending message to Node_12
+18:39:41.368 [Thread-13] DEBUG Node_12 -- Received message from Node_11
+18:39:41.368 [Thread-13] DEBUG Node_12 -- P12: Received 'TOKEN' from Node_11
+18:39:41.368 [Thread-13] DEBUG Node_12 -- P12: Processing token. Current p=0.03125
+18:39:41.368 [Thread-13] DEBUG Node_12 -- P12: Sending TOKEN to Node_13
+18:39:41.368 [Thread-13] DEBUG Node_12 -- Sending message to Node_13
+18:39:41.368 [Thread-14] DEBUG Node_13 -- Received message from Node_12
+18:39:41.368 [Thread-14] DEBUG Node_13 -- P13: Received 'TOKEN' from Node_12
+18:39:41.368 [Thread-14] DEBUG Node_13 -- P13: Processing token. Current p=0.03125
+18:39:41.368 [Thread-14] DEBUG Node_13 -- P13: Sending TOKEN to Node_14
+18:39:41.368 [Thread-14] DEBUG Node_13 -- Sending message to Node_14
+18:39:41.369 [Thread-15] DEBUG Node_14 -- Received message from Node_13
+18:39:41.369 [Thread-15] DEBUG Node_14 -- P14: Received 'TOKEN' from Node_13
+18:39:41.369 [Thread-15] DEBUG Node_14 -- P14: Processing token. Current p=0.03125
+18:39:41.369 [Thread-15] DEBUG Node_14 -- P14: Sending TOKEN to Node_15
+18:39:41.369 [Thread-15] DEBUG Node_14 -- Sending message to Node_15
+18:39:41.369 [Thread-16] DEBUG Node_15 -- Received message from Node_14
+18:39:41.369 [Thread-16] DEBUG Node_15 -- P15: Received 'TOKEN' from Node_14
+18:39:41.369 [Thread-16] DEBUG Node_15 -- P15: Processing token. Current p=0.03125
+18:39:41.369 [Thread-16] DEBUG Node_15 -- P15: Sending TOKEN to Node_0
+18:39:41.369 [Thread-16] DEBUG Node_15 -- Sending message to Node_0
+18:39:41.369 [Thread-1] DEBUG Node_0 -- Received message from Node_15
+18:39:41.369 [Thread-1] DEBUG Node_0 -- P0: Received 'TOKEN' from Node_15
+18:39:41.369 [Thread-1] DEBUG Node_0 -- P0: Processing token. Current p=0.03125
+18:39:41.369 [Thread-1] INFO Node_0 -- P0: Token returned. Round 5 completed in 2.2207 ms.
+18:39:41.369 [Thread-1] DEBUG Node_0 -- P0 (Task 4): Pausing for 5ms to allow concurrent firework messages to be processed before round evaluation.
+18:39:41.376 [Thread-1] INFO Node_0 -- P0: Round 5 assessed as firework-free. Consecutive no-firework rounds: 1/3
+18:39:41.376 [Thread-1] DEBUG Node_0 -- P0: Sending TOKEN to Node_1
+18:39:41.376 [Thread-1] DEBUG Node_0 -- Sending message to Node_1
+18:39:41.376 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.376 [Thread-2] DEBUG Node_1 -- P1: Received 'TOKEN' from Node_0
+18:39:41.376 [Thread-2] DEBUG Node_1 -- P1: Processing token. Current p=0.015625
+18:39:41.376 [Thread-2] DEBUG Node_1 -- P1: Sending TOKEN to Node_2
+18:39:41.376 [Thread-2] DEBUG Node_1 -- Sending message to Node_2
+18:39:41.376 [Thread-3] DEBUG Node_2 -- Received message from Node_1
+18:39:41.376 [Thread-3] DEBUG Node_2 -- P2: Received 'TOKEN' from Node_1
+18:39:41.376 [Thread-3] DEBUG Node_2 -- P2: Processing token. Current p=0.015625
+18:39:41.376 [Thread-3] DEBUG Node_2 -- P2: Sending TOKEN to Node_3
+18:39:41.376 [Thread-3] DEBUG Node_2 -- Sending message to Node_3
+18:39:41.376 [Thread-4] DEBUG Node_3 -- Received message from Node_2
+18:39:41.376 [Thread-4] DEBUG Node_3 -- P3: Received 'TOKEN' from Node_2
+18:39:41.376 [Thread-4] DEBUG Node_3 -- P3: Processing token. Current p=0.015625
+18:39:41.376 [Thread-4] DEBUG Node_3 -- P3: Sending TOKEN to Node_4
+18:39:41.376 [Thread-4] DEBUG Node_3 -- Sending message to Node_4
+18:39:41.376 [Thread-5] DEBUG Node_4 -- Received message from Node_3
+18:39:41.376 [Thread-5] DEBUG Node_4 -- P4: Received 'TOKEN' from Node_3
+18:39:41.376 [Thread-5] DEBUG Node_4 -- P4: Processing token. Current p=0.015625
+18:39:41.376 [Thread-5] DEBUG Node_4 -- P4: Sending TOKEN to Node_5
+18:39:41.376 [Thread-5] DEBUG Node_4 -- Sending message to Node_5
+18:39:41.376 [Thread-6] DEBUG Node_5 -- Received message from Node_4
+18:39:41.376 [Thread-6] DEBUG Node_5 -- P5: Received 'TOKEN' from Node_4
+18:39:41.376 [Thread-6] DEBUG Node_5 -- P5: Processing token. Current p=0.015625
+18:39:41.376 [Thread-6] DEBUG Node_5 -- P5: Sending TOKEN to Node_6
+18:39:41.376 [Thread-6] DEBUG Node_5 -- Sending message to Node_6
+18:39:41.376 [Thread-7] DEBUG Node_6 -- Received message from Node_5
+18:39:41.376 [Thread-7] DEBUG Node_6 -- P6: Received 'TOKEN' from Node_5
+18:39:41.376 [Thread-7] DEBUG Node_6 -- P6: Processing token. Current p=0.015625
+18:39:41.376 [Thread-7] DEBUG Node_6 -- P6: Sending TOKEN to Node_7
+18:39:41.376 [Thread-7] DEBUG Node_6 -- Sending message to Node_7
+18:39:41.376 [Thread-8] DEBUG Node_7 -- Received message from Node_6
+18:39:41.376 [Thread-8] DEBUG Node_7 -- P7: Received 'TOKEN' from Node_6
+18:39:41.376 [Thread-8] DEBUG Node_7 -- P7: Processing token. Current p=0.015625
+18:39:41.376 [Thread-8] DEBUG Node_7 -- P7: Sending TOKEN to Node_8
+18:39:41.376 [Thread-8] DEBUG Node_7 -- Sending message to Node_8
+18:39:41.376 [Thread-9] DEBUG Node_8 -- Received message from Node_7
+18:39:41.376 [Thread-9] DEBUG Node_8 -- P8: Received 'TOKEN' from Node_7
+18:39:41.376 [Thread-9] DEBUG Node_8 -- P8: Processing token. Current p=0.015625
+18:39:41.376 [Thread-9] DEBUG Node_8 -- P8: Sending TOKEN to Node_9
+18:39:41.376 [Thread-9] DEBUG Node_8 -- Sending message to Node_9
+18:39:41.376 [Thread-10] DEBUG Node_9 -- Received message from Node_8
+18:39:41.376 [Thread-10] DEBUG Node_9 -- P9: Received 'TOKEN' from Node_8
+18:39:41.376 [Thread-10] DEBUG Node_9 -- P9: Processing token. Current p=0.015625
+18:39:41.376 [Thread-10] DEBUG Node_9 -- P9: Sending TOKEN to Node_10
+18:39:41.376 [Thread-10] DEBUG Node_9 -- Sending message to Node_10
+18:39:41.376 [Thread-11] DEBUG Node_10 -- Received message from Node_9
+18:39:41.376 [Thread-11] DEBUG Node_10 -- P10: Received 'TOKEN' from Node_9
+18:39:41.376 [Thread-11] DEBUG Node_10 -- P10: Processing token. Current p=0.015625
+18:39:41.376 [Thread-11] DEBUG Node_10 -- P10: Sending TOKEN to Node_11
+18:39:41.376 [Thread-11] DEBUG Node_10 -- Sending message to Node_11
+18:39:41.377 [Thread-12] DEBUG Node_11 -- Received message from Node_10
+18:39:41.377 [Thread-12] DEBUG Node_11 -- P11: Received 'TOKEN' from Node_10
+18:39:41.377 [Thread-12] DEBUG Node_11 -- P11: Processing token. Current p=0.015625
+18:39:41.377 [Thread-12] DEBUG Node_11 -- P11: Sending TOKEN to Node_12
+18:39:41.377 [Thread-12] DEBUG Node_11 -- Sending message to Node_12
+18:39:41.377 [Thread-13] DEBUG Node_12 -- Received message from Node_11
+18:39:41.377 [Thread-13] DEBUG Node_12 -- P12: Received 'TOKEN' from Node_11
+18:39:41.377 [Thread-13] DEBUG Node_12 -- P12: Processing token. Current p=0.015625
+18:39:41.377 [Thread-13] DEBUG Node_12 -- P12: Sending TOKEN to Node_13
+18:39:41.377 [Thread-13] DEBUG Node_12 -- Sending message to Node_13
+18:39:41.377 [Thread-14] DEBUG Node_13 -- Received message from Node_12
+18:39:41.377 [Thread-14] DEBUG Node_13 -- P13: Received 'TOKEN' from Node_12
+18:39:41.377 [Thread-14] DEBUG Node_13 -- P13: Processing token. Current p=0.015625
+18:39:41.377 [Thread-14] DEBUG Node_13 -- P13: Sending TOKEN to Node_14
+18:39:41.377 [Thread-14] DEBUG Node_13 -- Sending message to Node_14
+18:39:41.377 [Thread-15] DEBUG Node_14 -- Received message from Node_13
+18:39:41.377 [Thread-15] DEBUG Node_14 -- P14: Received 'TOKEN' from Node_13
+18:39:41.377 [Thread-15] DEBUG Node_14 -- P14: Processing token. Current p=0.015625
+18:39:41.377 [Thread-15] DEBUG Node_14 -- P14: Sending TOKEN to Node_15
+18:39:41.377 [Thread-15] DEBUG Node_14 -- Sending message to Node_15
+18:39:41.377 [Thread-16] DEBUG Node_15 -- Received message from Node_14
+18:39:41.377 [Thread-16] DEBUG Node_15 -- P15: Received 'TOKEN' from Node_14
+18:39:41.377 [Thread-16] DEBUG Node_15 -- P15: Processing token. Current p=0.015625
+18:39:41.377 [Thread-16] DEBUG Node_15 -- P15: Sending TOKEN to Node_0
+18:39:41.377 [Thread-16] DEBUG Node_15 -- Sending message to Node_0
+18:39:41.377 [Thread-1] DEBUG Node_0 -- Received message from Node_15
+18:39:41.377 [Thread-1] DEBUG Node_0 -- P0: Received 'TOKEN' from Node_15
+18:39:41.377 [Thread-1] DEBUG Node_0 -- P0: Processing token. Current p=0.015625
+18:39:41.377 [Thread-1] INFO Node_0 -- P0: Token returned. Round 6 completed in 2.229 ms.
+18:39:41.377 [Thread-1] DEBUG Node_0 -- P0 (Task 4): Pausing for 5ms to allow concurrent firework messages to be processed before round evaluation.
+18:39:41.383 [Thread-1] INFO Node_0 -- P0: Round 6 assessed as firework-free. Consecutive no-firework rounds: 2/3
+18:39:41.383 [Thread-1] DEBUG Node_0 -- P0: Sending TOKEN to Node_1
+18:39:41.383 [Thread-1] DEBUG Node_0 -- Sending message to Node_1
+18:39:41.383 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.383 [Thread-2] DEBUG Node_1 -- P1: Received 'TOKEN' from Node_0
+18:39:41.383 [Thread-2] DEBUG Node_1 -- P1: Processing token. Current p=0.0078125
+18:39:41.383 [Thread-2] DEBUG Node_1 -- P1: Sending TOKEN to Node_2
+18:39:41.383 [Thread-2] DEBUG Node_1 -- Sending message to Node_2
+18:39:41.383 [Thread-3] DEBUG Node_2 -- Received message from Node_1
+18:39:41.383 [Thread-3] DEBUG Node_2 -- P2: Received 'TOKEN' from Node_1
+18:39:41.383 [Thread-3] DEBUG Node_2 -- P2: Processing token. Current p=0.0078125
+18:39:41.383 [Thread-3] DEBUG Node_2 -- P2: Sending TOKEN to Node_3
+18:39:41.383 [Thread-3] DEBUG Node_2 -- Sending message to Node_3
+18:39:41.383 [Thread-4] DEBUG Node_3 -- Received message from Node_2
+18:39:41.383 [Thread-4] DEBUG Node_3 -- P3: Received 'TOKEN' from Node_2
+18:39:41.383 [Thread-4] DEBUG Node_3 -- P3: Processing token. Current p=0.0078125
+18:39:41.383 [Thread-4] DEBUG Node_3 -- P3: Sending TOKEN to Node_4
+18:39:41.383 [Thread-4] DEBUG Node_3 -- Sending message to Node_4
+18:39:41.383 [Thread-5] DEBUG Node_4 -- Received message from Node_3
+18:39:41.383 [Thread-5] DEBUG Node_4 -- P4: Received 'TOKEN' from Node_3
+18:39:41.383 [Thread-5] DEBUG Node_4 -- P4: Processing token. Current p=0.0078125
+18:39:41.383 [Thread-5] DEBUG Node_4 -- P4: Sending TOKEN to Node_5
+18:39:41.383 [Thread-5] DEBUG Node_4 -- Sending message to Node_5
+18:39:41.383 [Thread-6] DEBUG Node_5 -- Received message from Node_4
+18:39:41.383 [Thread-6] DEBUG Node_5 -- P5: Received 'TOKEN' from Node_4
+18:39:41.383 [Thread-6] DEBUG Node_5 -- P5: Processing token. Current p=0.0078125
+18:39:41.383 [Thread-6] DEBUG Node_5 -- P5: Sending TOKEN to Node_6
+18:39:41.383 [Thread-6] DEBUG Node_5 -- Sending message to Node_6
+18:39:41.383 [Thread-7] DEBUG Node_6 -- Received message from Node_5
+18:39:41.383 [Thread-7] DEBUG Node_6 -- P6: Received 'TOKEN' from Node_5
+18:39:41.383 [Thread-7] DEBUG Node_6 -- P6: Processing token. Current p=0.0078125
+18:39:41.383 [Thread-7] DEBUG Node_6 -- P6: Sending TOKEN to Node_7
+18:39:41.383 [Thread-7] DEBUG Node_6 -- Sending message to Node_7
+18:39:41.383 [Thread-8] DEBUG Node_7 -- Received message from Node_6
+18:39:41.383 [Thread-8] DEBUG Node_7 -- P7: Received 'TOKEN' from Node_6
+18:39:41.383 [Thread-8] DEBUG Node_7 -- P7: Processing token. Current p=0.0078125
+18:39:41.383 [Thread-8] DEBUG Node_7 -- P7: Sending TOKEN to Node_8
+18:39:41.383 [Thread-8] DEBUG Node_7 -- Sending message to Node_8
+18:39:41.384 [Thread-9] DEBUG Node_8 -- Received message from Node_7
+18:39:41.384 [Thread-9] DEBUG Node_8 -- P8: Received 'TOKEN' from Node_7
+18:39:41.384 [Thread-9] DEBUG Node_8 -- P8: Processing token. Current p=0.0078125
+18:39:41.384 [Thread-9] DEBUG Node_8 -- P8: Sending TOKEN to Node_9
+18:39:41.384 [Thread-9] DEBUG Node_8 -- Sending message to Node_9
+18:39:41.384 [Thread-10] DEBUG Node_9 -- Received message from Node_8
+18:39:41.384 [Thread-10] DEBUG Node_9 -- P9: Received 'TOKEN' from Node_8
+18:39:41.384 [Thread-10] DEBUG Node_9 -- P9: Processing token. Current p=0.0078125
+18:39:41.384 [Thread-10] DEBUG Node_9 -- P9: Sending TOKEN to Node_10
+18:39:41.384 [Thread-10] DEBUG Node_9 -- Sending message to Node_10
+18:39:41.384 [Thread-11] DEBUG Node_10 -- Received message from Node_9
+18:39:41.384 [Thread-11] DEBUG Node_10 -- P10: Received 'TOKEN' from Node_9
+18:39:41.384 [Thread-11] DEBUG Node_10 -- P10: Processing token. Current p=0.0078125
+18:39:41.384 [Thread-11] DEBUG Node_10 -- P10: Sending TOKEN to Node_11
+18:39:41.384 [Thread-11] DEBUG Node_10 -- Sending message to Node_11
+18:39:41.384 [Thread-12] DEBUG Node_11 -- Received message from Node_10
+18:39:41.384 [Thread-12] DEBUG Node_11 -- P11: Received 'TOKEN' from Node_10
+18:39:41.384 [Thread-12] DEBUG Node_11 -- P11: Processing token. Current p=0.0078125
+18:39:41.384 [Thread-12] DEBUG Node_11 -- P11: Sending TOKEN to Node_12
+18:39:41.384 [Thread-12] DEBUG Node_11 -- Sending message to Node_12
+18:39:41.384 [Thread-13] DEBUG Node_12 -- Received message from Node_11
+18:39:41.384 [Thread-13] DEBUG Node_12 -- P12: Received 'TOKEN' from Node_11
+18:39:41.384 [Thread-13] DEBUG Node_12 -- P12: Processing token. Current p=0.0078125
+18:39:41.384 [Thread-13] DEBUG Node_12 -- P12: Sending TOKEN to Node_13
+18:39:41.384 [Thread-13] DEBUG Node_12 -- Sending message to Node_13
+18:39:41.384 [Thread-14] DEBUG Node_13 -- Received message from Node_12
+18:39:41.384 [Thread-14] DEBUG Node_13 -- P13: Received 'TOKEN' from Node_12
+18:39:41.384 [Thread-14] DEBUG Node_13 -- P13: Processing token. Current p=0.0078125
+18:39:41.384 [Thread-14] DEBUG Node_13 -- P13: Sending TOKEN to Node_14
+18:39:41.384 [Thread-14] DEBUG Node_13 -- Sending message to Node_14
+18:39:41.384 [Thread-15] DEBUG Node_14 -- Received message from Node_13
+18:39:41.384 [Thread-15] DEBUG Node_14 -- P14: Received 'TOKEN' from Node_13
+18:39:41.384 [Thread-15] DEBUG Node_14 -- P14: Processing token. Current p=0.0078125
+18:39:41.384 [Thread-15] DEBUG Node_14 -- P14: Sending TOKEN to Node_15
+18:39:41.384 [Thread-15] DEBUG Node_14 -- Sending message to Node_15
+18:39:41.384 [Thread-16] DEBUG Node_15 -- Received message from Node_14
+18:39:41.384 [Thread-16] DEBUG Node_15 -- P15: Received 'TOKEN' from Node_14
+18:39:41.384 [Thread-16] DEBUG Node_15 -- P15: Processing token. Current p=0.0078125
+18:39:41.384 [Thread-16] DEBUG Node_15 -- P15: Sending TOKEN to Node_0
+18:39:41.384 [Thread-16] DEBUG Node_15 -- Sending message to Node_0
+18:39:41.385 [Thread-1] DEBUG Node_0 -- Received message from Node_15
+18:39:41.385 [Thread-1] DEBUG Node_0 -- P0: Received 'TOKEN' from Node_15
+18:39:41.385 [Thread-1] DEBUG Node_0 -- P0: Processing token. Current p=0.0078125
+18:39:41.385 [Thread-1] INFO Node_0 -- P0: Token returned. Round 7 completed in 1.9783 ms.
+18:39:41.385 [Thread-1] DEBUG Node_0 -- P0 (Task 4): Pausing for 5ms to allow concurrent firework messages to be processed before round evaluation.
+18:39:41.391 [Thread-1] INFO Node_0 -- P0: Round 7 assessed as firework-free. Consecutive no-firework rounds: 3/3
+18:39:41.391 [Thread-1] INFO Node_0 -- P0: Termination condition met (3 consecutive rounds without firework). Broadcasting TERMINATE.
+18:39:41.391 [Thread-1] DEBUG Node_0 -- Broadcasting message
+18:39:41.391 [Thread-8] DEBUG Node_7 -- Received message from Node_0
+18:39:41.391 [Thread-14] DEBUG Node_13 -- Received message from Node_0
+18:39:41.391 [Thread-1] INFO Node_0 -- P0: Exited engage loop. Terminated.
+18:39:41.391 [Thread-10] DEBUG Node_9 -- Received message from Node_0
+18:39:41.391 [Thread-8] DEBUG Node_7 -- P7: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-2] DEBUG Node_1 -- Received message from Node_0
+18:39:41.391 [Thread-8] INFO Node_7 -- P7: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-14] DEBUG Node_13 -- P13: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-10] DEBUG Node_9 -- P9: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-10] INFO Node_9 -- P9: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-10] INFO Node_9 -- P9: Exited engage loop. Terminated.
+18:39:41.391 [Thread-2] DEBUG Node_1 -- P1: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-16] DEBUG Node_15 -- Received message from Node_0
+18:39:41.391 [Thread-16] DEBUG Node_15 -- P15: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-7] DEBUG Node_6 -- Received message from Node_0
+18:39:41.391 [Thread-7] DEBUG Node_6 -- P6: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-7] INFO Node_6 -- P6: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-12] DEBUG Node_11 -- Received message from Node_0
+18:39:41.391 [Thread-15] DEBUG Node_14 -- Received message from Node_0
+18:39:41.391 [Thread-12] DEBUG Node_11 -- P11: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-15] DEBUG Node_14 -- P14: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-12] INFO Node_11 -- P11: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-8] INFO Node_7 -- P7: Exited engage loop. Terminated.
+18:39:41.391 [Thread-9] DEBUG Node_8 -- Received message from Node_0
+18:39:41.391 [Thread-14] INFO Node_13 -- P13: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-5] DEBUG Node_4 -- Received message from Node_0
+18:39:41.391 [Thread-5] DEBUG Node_4 -- P4: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-6] DEBUG Node_5 -- Received message from Node_0
+18:39:41.391 [Thread-6] DEBUG Node_5 -- P5: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-6] INFO Node_5 -- P5: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-2] INFO Node_1 -- P1: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-6] INFO Node_5 -- P5: Exited engage loop. Terminated.
+18:39:41.391 [Thread-16] INFO Node_15 -- P15: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-7] INFO Node_6 -- P6: Exited engage loop. Terminated.
+18:39:41.391 [Thread-3] DEBUG Node_2 -- Received message from Node_0
+18:39:41.391 [Thread-11] DEBUG Node_10 -- Received message from Node_0
+18:39:41.391 [Thread-15] INFO Node_14 -- P14: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-12] INFO Node_11 -- P11: Exited engage loop. Terminated.
+18:39:41.391 [Thread-9] DEBUG Node_8 -- P8: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-4] DEBUG Node_3 -- Received message from Node_0
+18:39:41.391 [Thread-5] INFO Node_4 -- P4: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.392 [Thread-4] DEBUG Node_3 -- P3: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-13] DEBUG Node_12 -- Received message from Node_0
+18:39:41.392 [Thread-4] INFO Node_3 -- P3: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.391 [Thread-14] INFO Node_13 -- P13: Exited engage loop. Terminated.
+18:39:41.392 [Thread-13] DEBUG Node_12 -- P12: Received 'TERMINATE' from Node_0
+18:39:41.391 [Thread-2] INFO Node_1 -- P1: Exited engage loop. Terminated.
+18:39:41.391 [Thread-16] INFO Node_15 -- P15: Exited engage loop. Terminated.
+18:39:41.392 [Thread-11] DEBUG Node_10 -- P10: Received 'TERMINATE' from Node_0
+18:39:41.392 [Thread-11] INFO Node_10 -- P10: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.392 [Thread-15] INFO Node_14 -- P14: Exited engage loop. Terminated.
+18:39:41.392 [Thread-9] INFO Node_8 -- P8: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.392 [Thread-3] DEBUG Node_2 -- P2: Received 'TERMINATE' from Node_0
+18:39:41.392 [Thread-9] INFO Node_8 -- P8: Exited engage loop. Terminated.
+18:39:41.392 [Thread-5] INFO Node_4 -- P4: Exited engage loop. Terminated.
+18:39:41.392 [Thread-4] INFO Node_3 -- P3: Exited engage loop. Terminated.
+18:39:41.392 [Thread-13] INFO Node_12 -- P12: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.392 [Thread-11] INFO Node_10 -- P10: Exited engage loop. Terminated.
+18:39:41.392 [Thread-3] INFO Node_2 -- P2: Received TERMINATE from Node_0. Setting terminate flag and exiting.
+18:39:41.392 [Thread-13] INFO Node_12 -- P12: Exited engage loop. Terminated.
+18:39:41.392 [Thread-3] INFO Node_2 -- P2: Exited engage loop. Terminated.
+18:39:41.392 [main] INFO org.oxoo2a.sim4da.sim4da -- All node threads have completed.
+    Simulation for n=16, rep=1 finished in 0,201 seconds (wall clock).
+    P0 Results: Rounds=7, Fireworks=10, MinT=1,98ms, AvgT=22,00ms, MaxT=130,37ms
+18:39:41.396 [main] INFO org.oxoo2a.sim4da.sim4da -- Shutting down simulation environment.
+18:39:41.396 [main] INFO org.oxoo2a.sim4da.sim4da -- Interrupting 16 node threads.
+18:39:41.396 [main] INFO org.oxoo2a.sim4da.sim4da -- Joining node threads with timeout.
+18:39:41.396 [main] INFO org.oxoo2a.sim4da.Network -- Network shutdown and nodes cleared.
+18:39:41.396 [main] INFO org.oxoo2a.sim4da.sim4da -- sim4da Summer 2025 - Simulation environment shut down and reset.
+    Simulator shutdown complete for n=16, rep=1.
+
+All experiments finished. Data saved to experiment_results_task3_junit_larger.csv
+]]></system-out>
+  </testcase>
+</testsuite>

@@ -21,7 +21,11 @@ class EndlessRingTest {
                 int v = m.queryInteger("token");
                 System.out.println(NodeName() + " received token " + v);
                 m = new Message().add("token", v + 1);
-                sleep(100);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 sendBlindly(m, next_node);
             }
         }
