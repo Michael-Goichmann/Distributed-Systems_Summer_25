@@ -40,7 +40,7 @@ U1/experiment_run_logs/*
 U1/src_task_1/*.csv
 U1/*.pdf
 *.csv
-U1/src_task_3/resources/
+U1/src_task_3_4/resources/
 **/lib/
 *.iml
 .venv
