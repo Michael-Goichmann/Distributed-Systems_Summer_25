@@ -1,10 +1,16 @@
 package org.oxoo2a.sim4da;
 
+import org.oxoo2a.sim4da.dsm.*;
 import org.slf4j.Logger;
 
-public abstract class Node {
+public abstract class Node implements DSMNode {
     private final NetworkConnection nc;
     private final String name;
+    
+    // DSM instances for each implementation type
+    private APDistributedSharedMemory apDsm;
+    private CPDistributedSharedMemory cpDsm;
+    private CADistributedSharedMemory caDsm;
 
     public Node(String name) {
         this.name = name;
@@ -37,7 +43,71 @@ public abstract class Node {
      * @return The received message, or null if interrupted or simulation ends.
      */
     protected Message receive() {
-        return this.nc.receive();
+        Message message = this.nc.receive();
+        
+        // Process DSM-related messages if applicable
+        if (message != null) {
+            String type = message.query("type");
+            
+            // Handle AP DSM messages
+            if (apDsm != null && "DSM_AP_UPDATE".equals(type)) {
+                apDsm.processUpdateMessage(message);
+            }
+            
+            // Handle CP DSM messages
+            if (cpDsm != null) {
+                switch (type) {
+                    case "DSM_CP_WRITE_REQUEST":
+                        cpDsm.processWriteRequest(message);
+                        break;
+                    case "DSM_CP_WRITE_ACK":
+                        String writeAckRequestId = message.query("requestId");
+                        String writeAckSender = message.queryHeader("sender");
+                        cpDsm.processWriteAck(writeAckRequestId, writeAckSender);
+                        break;
+                    case "DSM_CP_WRITE_NACK":
+                        cpDsm.processWriteNack(message);
+                        break;
+                    case "DSM_CP_READ_REQUEST":
+                        cpDsm.processReadRequest(message);
+                        break;
+                    case "DSM_CP_READ_RESPONSE":
+                        String readResponseRequestId = message.query("requestId");
+                        String readResponseSender = message.queryHeader("sender");
+                        String readResponseKey = message.query("key");
+                        String readResponseValue = message.query("value");
+                        if (readResponseValue.isEmpty()) readResponseValue = null;
+                        cpDsm.processReadResponse(readResponseRequestId, readResponseSender, readResponseKey, readResponseValue);
+                        break;
+                    case "DSM_CP_READ_ERROR":
+                        cpDsm.processReadError(message);
+                        break;
+                }
+            }
+            
+            // Handle CA DSM messages
+            if (caDsm != null) {
+                switch (type) {
+                    case "DSM_CA_WRITE_REQUEST":
+                        caDsm.processWriteRequest(message);
+                        break;
+                    case "DSM_CA_READ_REQUEST":
+                        caDsm.processReadRequest(message);
+                        break;
+                    case "DSM_CA_UPDATE":
+                        caDsm.processUpdate(message);
+                        break;
+                    case "DSM_CA_READ_RESPONSE":
+                        caDsm.processReadResponse(message);
+                        break;
+                    case "DSM_CA_ERROR":
+                        caDsm.processError(message);
+                        break;
+                }
+            }
+        }
+        
+        return message;
     }
 
     /**
@@ -67,5 +137,66 @@ public abstract class Node {
      */
     protected void broadcast(Message message) {
         this.nc.send(message); // NetworkConnection's send(Message) is broadcast
+    }
+    
+    /**
+     * Gets a DSM instance of the specified type.
+     * 
+     * @param type The type of DSM implementation to use
+     * @return A DSM instance
+     */
+    protected DSM getDSM(DSMFactory.DSMType type) {
+        switch (type) {
+            case AP:
+                if (apDsm == null) {
+                    apDsm = (APDistributedSharedMemory) DSMFactory.createDSM(DSMFactory.DSMType.AP, this);
+                    apDsm.initialize(this.name);
+                }
+                return apDsm;
+            case CP:
+                if (cpDsm == null) {
+                    cpDsm = (CPDistributedSharedMemory) DSMFactory.createDSM(DSMFactory.DSMType.CP, this);
+                    cpDsm.initialize(this.name);
+                }
+                return cpDsm;
+            case CA:
+                if (caDsm == null) {
+                    caDsm = (CADistributedSharedMemory) DSMFactory.createDSM(DSMFactory.DSMType.CA, this);
+                    caDsm.initialize(this.name);
+                }
+                return caDsm;
+            default:
+                throw new IllegalArgumentException("Unknown DSM type: " + type);
+        }
+    }
+    
+    /**
+     * Shuts down all DSM instances for this node.
+     */
+    protected void shutdownDSM() {
+        if (apDsm != null) {
+            apDsm.shutdown();
+            apDsm = null;
+        }
+        if (cpDsm != null) {
+            cpDsm.shutdown();
+            cpDsm = null;
+        }
+        if (caDsm != null) {
+            caDsm.shutdown();
+            caDsm = null;
+        }
+    }
+    
+    // DSMNode interface implementation
+    
+    @Override
+    public void sendDSMBroadcast(Message message) {
+        broadcast(message);
+    }
+    
+    @Override
+    public void sendDSMMessage(Message message, String toNodeName) {
+        sendBlindly(message, toNodeName);
     }
 }

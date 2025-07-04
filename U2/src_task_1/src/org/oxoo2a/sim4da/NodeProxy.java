@@ -22,8 +22,9 @@ public class NodeProxy {
                 try {
                     messages.wait();
                 } catch (InterruptedException e) {
-                    // TODO Signal associated NetworkConnection that the simulation is shutting down
-                    e.printStackTrace();
+                    // Signal that the thread was interrupted
+                    Thread.currentThread().interrupt();
+                    return null;
                 }
             }
             int candidate_index = SimulationBehavior.selectMessageInQueue(messages.size());
