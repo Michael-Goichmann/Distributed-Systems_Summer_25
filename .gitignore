@@ -44,5 +44,5 @@ U1/src_task_3_4/resources/
 **/lib/
 *.iml
 .venv
-*.class
+**/*.class
 U1/src_task_3_4/target/
