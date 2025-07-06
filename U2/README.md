@@ -26,7 +26,7 @@ To install dependencies as defined in `uv.lock`
 uv sync
 ```
 
-Task 1 & 2: DSM Implementations and Inconsistency checks
+## Task 1 & 2: DSM Implementations and Inconsistency checks
 
 Uses multiple distributed shared memory implementations which extend the sim4da java implementation and evaluates the code by using individual mini applications.
 
