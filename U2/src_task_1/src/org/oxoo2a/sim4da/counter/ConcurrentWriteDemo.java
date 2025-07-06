@@ -17,7 +17,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ConcurrentWriteDemo {
     private static final Logger logger = LoggerFactory.getLogger(ConcurrentWriteDemo.class);
-    private static final int NUM_NODES = 5;
+    private static final int NUM_NODES = 16;
+    // private static final int NUM_NODES = 64;
+    // private static final int NUM_NODES = 128;
     private static final int SIMULATION_DURATION_SECONDS = 60; // Increased from 30 to 60
     private static final int NUM_SHARED_COUNTERS = 3;
     private static final int BASE_DELAY_MS = 500; // New base delay between operations
@@ -51,17 +53,34 @@ public class ConcurrentWriteDemo {
         // Report final statistics
         logger.info("Demo completed. Final statistics:");
         logger.info("AP: {} conflicts, {} operation failures", apConflicts.get(), apFailures.get());
-        logger.info("CP: {} conflicts, {} operation failures (mostly quorum failures)", cpConflicts.get(), cpFailures.get());
+        logger.info("CP: {} conflicts, {} operation failures", cpConflicts.get(), cpFailures.get());
         logger.info("CA: {} conflicts, {} operation failures", caConflicts.get(), caFailures.get());
         
         // Add CAP theorem explanation
         logger.info("\u001B[33m===== CAP THEOREM DEMONSTRATION =====\u001B[0m");
-        logger.info("AP (Availability+Partition Tolerance): Generated {} conflicts, {} failures", 
+        logger.info("AP (Availability+Partition Tolerance): {} conflicts, {} failures", 
                 apConflicts.get(), apFailures.get());
-        logger.info("CP (Consistency+Partition Tolerance): {} conflicts, {} failures (mostly quorum failures)",
+        if (apConflicts.get() > 0) {
+            logger.info("  ✓ AP showing expected behavior: conflicts due to eventual consistency");
+        } else {
+            logger.info("  ✗ AP not showing expected conflicts - eventual consistency propagation too fast");
+        }
+        
+        logger.info("CP (Consistency+Partition Tolerance): {} conflicts, {} failures",
                 cpConflicts.get(), cpFailures.get());
-        logger.info("CA (Consistency+Availability): {} conflicts, {} failures (would fail during network partitions)",
+        if (cpFailures.get() > cpConflicts.get()) {
+            logger.info("  ✓ CP showing expected behavior: fewer conflicts but some failures under contention");
+        } else {
+            logger.info("  ✗ CP not behaving as expected");
+        }
+        
+        logger.info("CA (Consistency+Availability): {} conflicts, {} failures",
                 caConflicts.get(), caFailures.get());
+        if (caFailures.get() < cpFailures.get()) {
+            logger.info("  ✓ CA showing expected behavior: fewer failures than CP");
+        } else {
+            logger.info("  ✗ CA showing unexpected behavior: too many failures for non-partitioned network");
+        }
         logger.info("\u001B[33m====================================\u001B[0m");
         
         simulator.shutdown();
@@ -74,10 +93,10 @@ public class ConcurrentWriteDemo {
         private final Logger logger;
         private final int nodeId;
         
-        // Store local expectation of counter values
-        private final Map<String, Integer> apExpectedValues = new HashMap<>();
-        private final Map<String, Integer> cpExpectedValues = new HashMap<>();
-        private final Map<String, Integer> caExpectedValues = new HashMap<>();
+        // Store local expectation of counter values based on the last successful write
+        private final Map<String, Integer> apLastWrittenValue = new HashMap<>();
+        private final Map<String, Integer> cpLastWrittenValue = new HashMap<>();
+        private final Map<String, Integer> caLastWrittenValue = new HashMap<>();
         
         public ConcurrentWriteNode(String name, int nodeId) {
             super(name);
@@ -151,9 +170,9 @@ public class ConcurrentWriteDemo {
                     String counterKey = "shared_counter_" + i;
                     
                     // Initialize our expectations
-                    apExpectedValues.put(counterKey, 0);
-                    cpExpectedValues.put(counterKey, 0);
-                    caExpectedValues.put(counterKey, 0);
+                    apLastWrittenValue.put(counterKey, 0);
+                    cpLastWrittenValue.put(counterKey, 0);
+                    caLastWrittenValue.put(counterKey, 0);
                     
                     // Node 0 initializes all counters to 0
                     if (nodeId == 0) {
@@ -176,18 +195,21 @@ public class ConcurrentWriteDemo {
         }
         
         private void incrementCounter(String counterKey) {
-            // Add delay between DSM operations
+            // Make all increments happen more closely together in time
+            // to increase likelihood of concurrent conflicts
             try {
-                // CA DSM increment first
+                // Do CA increments together in a batch
                 incrementCA(counterKey);
-                Thread.sleep(200);
                 
-                // AP DSM increment 
+                // Do AP increments at nearly the same time
+                // (no delay between them to maximize conflicting updates)
                 incrementAP(counterKey);
-                Thread.sleep(200);
                 
-                // CP DSM increment last
+                // Do CP increments
                 incrementCP(counterKey);
+                
+                // Short delay between different counters
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -197,25 +219,25 @@ public class ConcurrentWriteDemo {
             try {
                 String currentValueStr = getDSM(DSMFactory.DSMType.AP).read(counterKey);
                 int currentValue = currentValueStr != null ? Integer.parseInt(currentValueStr) : 0;
-                int newValue = currentValue + 1;
                 
-                // Update local expectation
-                int expectedValue = apExpectedValues.getOrDefault(counterKey, 0) + 1;
-                apExpectedValues.put(counterKey, expectedValue);
-                
-                // Check for conflicts
-                if (currentValue != expectedValue - 1) {
-                    logger.warn("\u001B[33mAP CONFLICT\u001B[0m: Expected {} to be {} but found {}", 
-                            counterKey, expectedValue - 1, currentValue);
-                    apConflicts.incrementAndGet();
+                // A conflict occurs if the value we read is not what we last wrote.
+                // This means another node has updated the value since our last write.
+                int lastWritten = apLastWrittenValue.getOrDefault(counterKey, 0);
+                if (currentValue != lastWritten) {
+                    logger.warn("\u001B[33mAP CONFLICT\u001B[0m: Read {} for {} but expected our last write of {} (EXPECTED in AP model)",
+                            currentValue, counterKey, lastWritten);
+                    ConcurrentWriteDemo.apConflicts.incrementAndGet();
                 }
                 
-                // Write the new value
+                // Increment based on the value we just read
+                int newValue = currentValue + 1;
                 getDSM(DSMFactory.DSMType.AP).write(counterKey, String.valueOf(newValue));
+                apLastWrittenValue.put(counterKey, newValue); // Update our last written value
+                
                 logger.debug("AP: Incremented {} from {} to {}", counterKey, currentValue, newValue);
             } catch (DSMException e) {
                 logger.warn("AP: Failed to increment {}: {}", counterKey, e.getMessage());
-                apFailures.incrementAndGet(); // Track operation failures
+                ConcurrentWriteDemo.apFailures.incrementAndGet();
             }
         }
         
@@ -223,25 +245,25 @@ public class ConcurrentWriteDemo {
             try {
                 String currentValueStr = getDSM(DSMFactory.DSMType.CP).read(counterKey);
                 int currentValue = currentValueStr != null ? Integer.parseInt(currentValueStr) : 0;
-                int newValue = currentValue + 1;
-                
-                // Update local expectation
-                int expectedValue = cpExpectedValues.getOrDefault(counterKey, 0) + 1;
-                cpExpectedValues.put(counterKey, expectedValue);
-                
-                // Check for conflicts
-                if (currentValue != expectedValue - 1) {
-                    logger.warn("\u001B[33mCP CONFLICT\u001B[0m: Expected {} to be {} but found {}", 
-                            counterKey, expectedValue - 1, currentValue);
-                    cpConflicts.incrementAndGet();
+
+                // With CP, we expect to read the value we last wrote due to strong consistency.
+                int lastWritten = cpLastWrittenValue.getOrDefault(counterKey, 0);
+                if (currentValue != lastWritten) {
+                    logger.warn("\u001B[33mCP CONFLICT\u001B[0m: Read {} for {} but expected our last write of {} (UNUSUAL in CP model)",
+                            currentValue, counterKey, lastWritten);
+                    ConcurrentWriteDemo.cpConflicts.incrementAndGet();
                 }
-                
-                // Write the new value
+
+                // Increment based on the value we just read
+                int newValue = currentValue + 1;
                 getDSM(DSMFactory.DSMType.CP).write(counterKey, String.valueOf(newValue));
+                cpLastWrittenValue.put(counterKey, newValue); // Update our last written value
+
                 logger.debug("CP: Incremented {} from {} to {}", counterKey, currentValue, newValue);
             } catch (DSMException e) {
+                // CP may occasionally fail to reach quorum under heavy concurrency
                 logger.warn("CP: Failed to increment {}: {}", counterKey, e.getMessage());
-                cpFailures.incrementAndGet(); // Track operation failures
+                ConcurrentWriteDemo.cpFailures.incrementAndGet();
             }
         }
         
@@ -249,25 +271,25 @@ public class ConcurrentWriteDemo {
             try {
                 String currentValueStr = getDSM(DSMFactory.DSMType.CA).read(counterKey);
                 int currentValue = currentValueStr != null ? Integer.parseInt(currentValueStr) : 0;
-                int newValue = currentValue + 1;
-                
-                // Update local expectation
-                int expectedValue = caExpectedValues.getOrDefault(counterKey, 0) + 1;
-                caExpectedValues.put(counterKey, expectedValue);
-                
-                // Check for conflicts
-                if (currentValue != expectedValue - 1) {
-                    logger.warn("\u001B[33mCA CONFLICT\u001B[0m: Expected {} to be {} but found {}", 
-                            counterKey, expectedValue - 1, currentValue);
-                    caConflicts.incrementAndGet();
+
+                // With CA, we expect to read the value we last wrote due to strong consistency.
+                int lastWritten = caLastWrittenValue.getOrDefault(counterKey, 0);
+                if (currentValue != lastWritten) {
+                    logger.warn("\u001B[33mCA CONFLICT\u001B[0m: Read {} for {} but expected our last write of {} (UNUSUAL in CA model)",
+                            currentValue, counterKey, lastWritten);
+                    ConcurrentWriteDemo.caConflicts.incrementAndGet();
                 }
-                
-                // Write the new value
+
+                // Increment based on the value we just read
+                int newValue = currentValue + 1;
                 getDSM(DSMFactory.DSMType.CA).write(counterKey, String.valueOf(newValue));
+                caLastWrittenValue.put(counterKey, newValue); // Update our last written value
+
                 logger.debug("CA: Incremented {} from {} to {}", counterKey, currentValue, newValue);
             } catch (DSMException e) {
+                // CA might have occasional failures under high load but should generally work
                 logger.warn("CA: Failed to increment {}: {}", counterKey, e.getMessage());
-                caFailures.incrementAndGet(); // Track operation failures
+                ConcurrentWriteDemo.caFailures.incrementAndGet();
             }
         }
         

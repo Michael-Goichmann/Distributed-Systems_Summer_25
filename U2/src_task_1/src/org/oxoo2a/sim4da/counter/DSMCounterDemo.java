@@ -20,7 +20,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class DSMCounterDemo {
     private static final Logger logger = LoggerFactory.getLogger(DSMCounterDemo.class);
-    private static final int NUM_NODES = 5;
+    private static final int NUM_NODES = 16;
+    // private static final int NUM_NODES = 64;
+    // private static final int NUM_NODES = 128;
     private static final int SIMULATION_DURATION_SECONDS = 30;
     
     // Control parameters for the demo

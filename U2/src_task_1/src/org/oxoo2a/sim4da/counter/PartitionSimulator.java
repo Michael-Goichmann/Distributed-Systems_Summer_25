@@ -20,7 +20,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class PartitionSimulator {
     private static final Logger logger = LoggerFactory.getLogger(PartitionSimulator.class);
-    private static final int NUM_NODES = 6;
+    private static final int NUM_NODES = 16;
+    // private static final int NUM_NODES = 64;
+    // private static final int NUM_NODES = 128;
     private static final int SIMULATION_DURATION_SECONDS = 60;
     
     // Partition simulation parameters

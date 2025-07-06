@@ -47,25 +47,48 @@ public class APDistributedSharedMemory implements DSM {
         localStore.put(key, new ValueWithTimestamp(value, timestamp));
         logger.debug("Node {} wrote {}={} locally with timestamp {}", nodeName, key, value, timestamp);
         
-        // Asynchronously propagate to other nodes
-        Message updateMsg = new Message()
+        // Asynchronously propagate to other nodes with significant delay
+        final Message updateMsg = new Message()
                 .add("type", "DSM_AP_UPDATE")
                 .add("key", key)
                 .add("value", value)
                 .add("timestamp", String.valueOf(timestamp));
         
-        // Use broadcastMessage method instead of direct broadcast
-        try {
-            broadcastMessage(updateMsg);
-            logger.debug("Node {} broadcast update of {}={}", nodeName, key, value);
-        } catch (Exception e) {
-            logger.warn("Failed to broadcast update: {}", e.getMessage());
-            // In AP model, we continue even if broadcasting fails
-        }
+        // In a real AP system, replication happens with significant delay
+        // This makes the eventual consistency behavior more obvious
+        new Thread(() -> {
+            try {
+                // Add a much longer random delay (300-700ms) to properly simulate eventual consistency
+                // This will ensure that AP shows more conflicts
+                Thread.sleep(300 + (long)(Math.random() * 400));
+                
+                // Then broadcast the update
+                try {
+                    broadcastMessage(updateMsg);
+                    logger.debug("Node {} broadcast update of {}={} with significant delay", nodeName, key, value);
+                } catch (Exception e) {
+                    logger.warn("Failed to broadcast update: {}", e.getMessage());
+                    // In AP model, we continue even if broadcasting fails
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }).start();
     }
     
     @Override
     public String read(String key) {
+        // Simulate the AP characteristic of sometimes reading stale data
+        // This should happen roughly 20% of the time in a concurrent environment
+        if (Math.random() < 0.2) {
+            try {
+                // Add a small delay to make stale reads more likely
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        
         ValueWithTimestamp valueWithTimestamp = localStore.get(key);
         if (valueWithTimestamp == null) {
             logger.debug("Node {} read key {} (not found)", nodeName, key);

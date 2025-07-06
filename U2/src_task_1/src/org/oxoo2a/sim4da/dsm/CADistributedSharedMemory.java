@@ -37,6 +37,10 @@ public class CADistributedSharedMemory implements DSM {
     // Timeout for operations (ms)
     private static final int OPERATION_TIMEOUT = 5000; // Increased from 2000ms to 5000ms
     
+    // Add a throttling mechanism for coordinator
+    private static final Object coordinatorLock = new Object();
+    private static final long COORDINATOR_PROCESSING_TIME_MS = 10; // Small delay for coordinator processing
+    
     public CADistributedSharedMemory(Node node) {
         this.node = node;
     }
@@ -207,28 +211,40 @@ public class CADistributedSharedMemory implements DSM {
         String sender = message.queryHeader("sender");
         
         try {
-            // Update the central store
-            localStore.put(key, value);
-            logger.debug("Coordinator processed write request for {}={} from {}", key, value, sender);
+            // Throttle coordinator processing to prevent overload
+            synchronized (coordinatorLock) {
+                // Update the central store
+                localStore.put(key, value);
+                logger.debug("Coordinator processed write request for {}={} from {}", key, value, sender);
+                
+                // Simulate some processing time
+                Thread.sleep(COORDINATOR_PROCESSING_TIME_MS);
+                
+                // Send direct acknowledgment to the sender first to prevent timeout
+                Message ackMsg = new Message()
+                        .add("type", "DSM_CA_UPDATE")
+                        .add("key", key)
+                        .add("value", value)
+                        .add("operationId", operationId);
+                
+                // First send directly to requester to ensure they get a fast response
+                sendMessage(ackMsg, sender);
+            }
             
-            // Send direct acknowledgment to the sender first to prevent timeout
-            Message ackMsg = new Message()
-                    .add("type", "DSM_CA_UPDATE")
-                    .add("key", key)
-                    .add("value", value)
-                    .add("operationId", operationId);
-            
-            // First send directly to requester to ensure they get a fast response
-            sendMessage(ackMsg, sender);
-            
-            // Then broadcast to everyone else
-            Message broadcastMsg = new Message()
-                    .add("type", "DSM_CA_UPDATE")
-                    .add("key", key)
-                    .add("value", value);
-            
-            // Broadcast to everyone except the original sender
-            broadcastMessageExcept(broadcastMsg, sender);
+            // Then broadcast to everyone else in the background
+            new Thread(() -> {
+                try {
+                    Message broadcastMsg = new Message()
+                            .add("type", "DSM_CA_UPDATE")
+                            .add("key", key)
+                            .add("value", value);
+                    
+                    // Broadcast to everyone except the original sender
+                    broadcastMessageExcept(broadcastMsg, sender);
+                } catch (Exception e) {
+                    logger.warn("Error in background broadcast: {}", e.getMessage());
+                }
+            }).start();
             
         } catch (Exception e) {
             logger.error("Error processing write request: {}", e.getMessage());
@@ -257,35 +273,25 @@ public class CADistributedSharedMemory implements DSM {
         String sender = message.queryHeader("sender");
         
         try {
-            // Read from the central store
-            String value = localStore.get(key);
-            logger.debug("Coordinator processed read request for {} (value: {}) from {}", key, value, sender);
-            
-            // Send response to sender
-            Message responseMsg = new Message()
-                    .add("type", "DSM_CA_READ_RESPONSE")
-                    .add("operationId", operationId)
-                    .add("key", key)
-                    .add("value", value != null ? value : "");
-            
-            // Make sure the response is sent directly to the requester and not lost
-            int maxRetries = 3;
-            boolean sent = false;
-            for (int i = 0; i < maxRetries && !sent; i++) {
-                try {
-                    sendMessage(responseMsg, sender);
-                    sent = true;
-                } catch (Exception e) {
-                    logger.warn("Retry {}/{}: Error sending read response to {}: {}", 
-                            i+1, maxRetries, sender, e.getMessage());
-                    Thread.sleep(50); // Short delay before retry
-                }
+            // Throttle coordinator processing to prevent overload
+            synchronized (coordinatorLock) {
+                // Read from the central store
+                String value = localStore.get(key);
+                logger.debug("Coordinator processed read request for {} (value: {}) from {}", key, value, sender);
+                
+                // Simulate some processing time
+                Thread.sleep(COORDINATOR_PROCESSING_TIME_MS);
+                
+                // Send response to sender
+                Message responseMsg = new Message()
+                        .add("type", "DSM_CA_READ_RESPONSE")
+                        .add("operationId", operationId)
+                        .add("key", key)
+                        .add("value", value != null ? value : "");
+                
+                // Make sure the response is sent directly to the requester and not lost
+                sendMessage(responseMsg, sender);
             }
-            
-            if (!sent) {
-                logger.error("Failed to send read response to {} after {} retries", sender, maxRetries);
-            }
-            
         } catch (Exception e) {
             logger.error("Error processing read request: {}", e.getMessage());
             
@@ -414,3 +420,5 @@ public class CADistributedSharedMemory implements DSM {
         }
     }
 }
+
+

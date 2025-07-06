@@ -56,7 +56,10 @@ public class CPDistributedSharedMemory implements DSM {
                 nodeName, key, value, requestId, requiredQuorum);
         
         try {
-            // First, try to update all nodes
+            // First, update local copy immediately
+            localStore.put(key, value);
+            
+            // Then broadcast to other nodes
             Message writeRequestMsg = new Message()
                     .add("type", "DSM_CP_WRITE_REQUEST")
                     .add("requestId", requestId)
@@ -65,33 +68,17 @@ public class CPDistributedSharedMemory implements DSM {
             
             broadcastMessage(writeRequestMsg);
             
-            // Local node also participates in quorum
-            localStore.put(key, value);
+            // Local node participates in quorum
             processWriteAck(requestId, nodeName);
             
-            // Wait for quorum with better progress reporting
-            long startTime = System.currentTimeMillis();
-            boolean quorumReached = false;
+            // Wait for quorum with better handling of concurrent requests
+            boolean quorumReached = quorumState.latch.await(timeoutMs, TimeUnit.MILLISECONDS);
             
-            while (System.currentTimeMillis() < startTime + timeoutMs && !quorumReached) {
-                quorumReached = quorumState.latch.await(500, TimeUnit.MILLISECONDS);
-                
-                if (!quorumReached) {
-                    // Log progress periodically
-                    int currentResponses = quorumState.responses.get();
-                    if (currentResponses > 0) {
-                        logger.debug("Write quorum progress: {} of {} responses after {}ms", 
-                                currentResponses, requiredQuorum, System.currentTimeMillis() - startTime);
-                        
-                        // If we have some responses but not enough for quorum after a while,
-                        // we might be in a partition
-                        if (currentResponses < requiredQuorum && 
-                                System.currentTimeMillis() - startTime > timeoutMs / 2) {
-                            logger.info("Possible network partition detected: only {} of {} responses received", 
-                                    currentResponses, requiredQuorum);
-                        }
-                    }
-                }
+            // Reduce the chance of quorum failures
+            if (!quorumReached) {
+                // Make a second attempt with a shorter timeout
+                logger.debug("First quorum attempt failed, retrying with 1000ms timeout");
+                quorumReached = quorumState.latch.await(1000, TimeUnit.MILLISECONDS);
             }
             
             if (!quorumReached) {
