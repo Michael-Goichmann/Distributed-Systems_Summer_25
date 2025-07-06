@@ -1,6 +1,7 @@
 package org.oxoo2a.sim4da.dsm;
 
 import org.oxoo2a.sim4da.Message;
+import org.oxoo2a.sim4da.Network;
 import org.oxoo2a.sim4da.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,7 @@ public class CADistributedSharedMemory implements DSM {
     private final AtomicInteger operationIdCounter = new AtomicInteger(0);
     
     // Timeout for operations (ms)
-    private static final int OPERATION_TIMEOUT = 500;
+    private static final int OPERATION_TIMEOUT = 5000; // Increased from 2000ms to 5000ms
     
     public CADistributedSharedMemory(Node node) {
         this.node = node;
@@ -133,12 +134,32 @@ public class CADistributedSharedMemory implements DSM {
                     .add("operationId", operationId)
                     .add("key", key);
             
-            sendMessage(readRequestMsg, COORDINATOR_NODE);
+            // Send with retry logic
+            boolean sent = false;
+            int maxRetries = 3;
+            for (int i = 0; i < maxRetries && !sent; i++) {
+                try {
+                    sendMessage(readRequestMsg, COORDINATOR_NODE);
+                    sent = true;
+                } catch (Exception e) {
+                    logger.warn("Retry {}/{}: Error sending read request to coordinator: {}", 
+                            i+1, maxRetries, e.getMessage());
+                    if (i < maxRetries - 1) {
+                        Thread.sleep(50); // Short delay before retry
+                    }
+                }
+            }
+            
+            if (!sent) {
+                logger.info("CAP THEOREM INSIGHT: CA system cannot reach coordinator - this demonstrates why CA systems cannot be partition tolerant");
+                throw new DSMException("Failed to send read request to coordinator after multiple attempts");
+            }
             
             // Wait for response from coordinator
             boolean completed = opState.latch.await(OPERATION_TIMEOUT, TimeUnit.MILLISECONDS);
             
             if (!completed) {
+                logger.info("CAP THEOREM INSIGHT: Read timed out waiting for coordinator - in a network partition, CA systems cannot maintain both consistency and availability");
                 throw new DSMException("Read operation timed out for key " + key);
             }
             
@@ -190,14 +211,24 @@ public class CADistributedSharedMemory implements DSM {
             localStore.put(key, value);
             logger.debug("Coordinator processed write request for {}={} from {}", key, value, sender);
             
-            // Broadcast update to all nodes (including sender for acknowledgment)
-            Message updateMsg = new Message()
+            // Send direct acknowledgment to the sender first to prevent timeout
+            Message ackMsg = new Message()
                     .add("type", "DSM_CA_UPDATE")
                     .add("key", key)
                     .add("value", value)
                     .add("operationId", operationId);
             
-            broadcastMessage(updateMsg);
+            // First send directly to requester to ensure they get a fast response
+            sendMessage(ackMsg, sender);
+            
+            // Then broadcast to everyone else
+            Message broadcastMsg = new Message()
+                    .add("type", "DSM_CA_UPDATE")
+                    .add("key", key)
+                    .add("value", value);
+            
+            // Broadcast to everyone except the original sender
+            broadcastMessageExcept(broadcastMsg, sender);
             
         } catch (Exception e) {
             logger.error("Error processing write request: {}", e.getMessage());
@@ -237,7 +268,23 @@ public class CADistributedSharedMemory implements DSM {
                     .add("key", key)
                     .add("value", value != null ? value : "");
             
-            sendMessage(responseMsg, sender);
+            // Make sure the response is sent directly to the requester and not lost
+            int maxRetries = 3;
+            boolean sent = false;
+            for (int i = 0; i < maxRetries && !sent; i++) {
+                try {
+                    sendMessage(responseMsg, sender);
+                    sent = true;
+                } catch (Exception e) {
+                    logger.warn("Retry {}/{}: Error sending read response to {}: {}", 
+                            i+1, maxRetries, sender, e.getMessage());
+                    Thread.sleep(50); // Short delay before retry
+                }
+            }
+            
+            if (!sent) {
+                logger.error("Failed to send read response to {} after {} retries", sender, maxRetries);
+            }
             
         } catch (Exception e) {
             logger.error("Error processing read request: {}", e.getMessage());
@@ -259,17 +306,19 @@ public class CADistributedSharedMemory implements DSM {
         String key = message.query("key");
         String value = message.query("value");
         String operationId = message.query("operationId");
+        String sender = message.queryHeader("sender");
         
         // Update local cache
         localStore.put(key, value);
-        logger.debug("Node {} received update for {}={} from coordinator", nodeName, key, value);
+        logger.debug("Node {} received update for {}={} from {}", nodeName, key, value, sender);
         
         // If this was in response to our operation, complete it
-        if (operationId != null) {
+        if (operationId != null && pendingOperations.containsKey(operationId)) {
             OperationState opState = pendingOperations.get(operationId);
             if (opState != null) {
                 opState.value.set(value);
                 opState.latch.countDown();
+                logger.debug("Node {} completed operation {} in response to update", nodeName, operationId);
             }
         }
     }
@@ -344,6 +393,24 @@ public class CADistributedSharedMemory implements DSM {
             ((DSMNode)node).sendDSMMessage(message, toNodeName);
         } catch (Exception e) {
             logger.warn("Error sending message to {}: {}", toNodeName, e.getMessage());
+        }
+    }
+    
+    /**
+     * Broadcasts a message to all nodes except one specific node.
+     * This is used to avoid duplicate messages to the original sender.
+     */
+    private void broadcastMessageExcept(Message message, String exceptNodeName) {
+        try {
+            // Since we can't exclude a node from broadcast, we'll handle it manually
+            for (int i = 0; i < Network.getInstance().numberOfNodes(); i++) {
+                String targetNode = "Node_" + i;
+                if (!targetNode.equals(exceptNodeName) && !targetNode.equals(nodeName)) {
+                    sendMessage(message, targetNode);
+                }
+            }
+        } catch (Exception e) {
+            logger.warn("Error during selective broadcast: {}", e.getMessage());
         }
     }
 }

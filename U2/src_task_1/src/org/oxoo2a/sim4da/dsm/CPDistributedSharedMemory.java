@@ -26,7 +26,7 @@ public class CPDistributedSharedMemory implements DSM {
     private String nodeName;
     private final Node node;
     private Logger logger;
-    private final int timeoutMs = 1000; // Timeout for quorum operations
+    private final int timeoutMs = 5000; // Increased from 1000ms to 5000ms
     
     // For tracking responses to quorum requests
     private final Map<String, QuorumState> pendingQuorums = new ConcurrentHashMap<>();
@@ -69,11 +69,36 @@ public class CPDistributedSharedMemory implements DSM {
             localStore.put(key, value);
             processWriteAck(requestId, nodeName);
             
-            // Wait for quorum
-            boolean quorumReached = quorumState.latch.await(timeoutMs, TimeUnit.MILLISECONDS);
+            // Wait for quorum with better progress reporting
+            long startTime = System.currentTimeMillis();
+            boolean quorumReached = false;
+            
+            while (System.currentTimeMillis() < startTime + timeoutMs && !quorumReached) {
+                quorumReached = quorumState.latch.await(500, TimeUnit.MILLISECONDS);
+                
+                if (!quorumReached) {
+                    // Log progress periodically
+                    int currentResponses = quorumState.responses.get();
+                    if (currentResponses > 0) {
+                        logger.debug("Write quorum progress: {} of {} responses after {}ms", 
+                                currentResponses, requiredQuorum, System.currentTimeMillis() - startTime);
+                        
+                        // If we have some responses but not enough for quorum after a while,
+                        // we might be in a partition
+                        if (currentResponses < requiredQuorum && 
+                                System.currentTimeMillis() - startTime > timeoutMs / 2) {
+                            logger.info("Possible network partition detected: only {} of {} responses received", 
+                                    currentResponses, requiredQuorum);
+                        }
+                    }
+                }
+            }
             
             if (!quorumReached) {
-                throw new DSMException("Failed to reach write quorum for key " + key);
+                int responsesReceived = quorumState.responses.get();
+                throw new DSMException(String.format(
+                        "Failed to reach write quorum for key %s (got %d of %d required responses)",
+                        key, responsesReceived, requiredQuorum));
             }
             
             if (quorumState.error.get() != null) {
@@ -110,17 +135,48 @@ public class CPDistributedSharedMemory implements DSM {
                     .add("requestId", requestId)
                     .add("key", key);
             
-            broadcastMessage(readRequestMsg);
+            // Use a retry mechanism for broadcast
+            int maxRetries = 3;
+            for (int i = 0; i < maxRetries; i++) {
+                try {
+                    broadcastMessage(readRequestMsg);
+                    break; // Success
+                } catch (Exception e) {
+                    logger.warn("Retry {}/{}: Error broadcasting read request: {}", 
+                            i+1, maxRetries, e.getMessage());
+                    if (i < maxRetries - 1) {
+                        Thread.sleep(50); // Short delay before retry
+                    }
+                }
+            }
             
             // Local node also responds
             String localValue = localStore.get(key);
             processReadResponse(requestId, nodeName, key, localValue);
             
-            // Wait for quorum
-            boolean quorumReached = quorumState.latch.await(timeoutMs, TimeUnit.MILLISECONDS);
+            // Wait for quorum with periodic logging of progress
+            long startTime = System.currentTimeMillis();
+            long deadline = startTime + timeoutMs;
+            boolean quorumReached = false;
+            
+            while (System.currentTimeMillis() < deadline && !quorumReached) {
+                quorumReached = quorumState.latch.await(500, TimeUnit.MILLISECONDS);
+                
+                if (!quorumReached) {
+                    // Log progress if still waiting
+                    int currentResponses = quorumState.responses.get();
+                    if (currentResponses > 0) {
+                        logger.debug("Still waiting for quorum: have {} of {} required responses for request {}", 
+                                currentResponses, requiredQuorum, requestId);
+                    }
+                }
+            }
             
             if (!quorumReached) {
-                throw new DSMException("Failed to reach read quorum for key " + key);
+                int responsesReceived = quorumState.responses.get();
+                throw new DSMException(String.format(
+                        "Failed to reach read quorum for key %s (got %d of %d required responses)",
+                        key, responsesReceived, requiredQuorum));
             }
             
             if (quorumState.error.get() != null) {
@@ -159,7 +215,14 @@ public class CPDistributedSharedMemory implements DSM {
         try {
             // Update local store
             localStore.put(key, value);
-            logger.debug("Node {} processed write request for {}={} from {}", nodeName, key, value, sender);
+            logger.debug("Node {} processing write request for {}={} from {} (concurrent requests: {})", 
+                    nodeName, key, value, sender, pendingQuorums.size());
+            
+            // If this node is busy with its own quorum operations, there might be delays
+            if (pendingQuorums.size() > 1) {
+                logger.warn("Node {} is busy with {} pending quorums while handling write request from {}", 
+                        nodeName, pendingQuorums.size(), sender);
+            }
             
             // Send acknowledgment
             Message ackMsg = new Message()
@@ -187,7 +250,9 @@ public class CPDistributedSharedMemory implements DSM {
         QuorumState state = pendingQuorums.get(requestId);
         if (state != null) {
             logger.debug("Node {} received write ACK for request {} from {}", nodeName, requestId, sender);
-            state.acknowledgeResponse();
+            int current = state.acknowledgeResponse();
+            logger.debug("Request {} has {} responses out of {} required for quorum", 
+                    requestId, current, state.requiredQuorum);
         }
     }
     
@@ -219,8 +284,14 @@ public class CPDistributedSharedMemory implements DSM {
         try {
             // Read from local store
             String value = localStore.get(key);
-            logger.debug("Node {} processed read request for {} (value: {}) from {}", 
-                    nodeName, key, value, sender);
+            logger.debug("Node {} processing read request for {} (value: {}) from {} (concurrent requests: {})", 
+                    nodeName, key, value, sender, pendingQuorums.size());
+            
+            // If this node is busy with its own quorum operations, there might be delays
+            if (pendingQuorums.size() > 1) {
+                logger.warn("Node {} is busy with {} pending quorums while handling read request from {}", 
+                        nodeName, pendingQuorums.size(), sender);
+            }
             
             // Send response
             Message responseMsg = new Message()
@@ -258,7 +329,9 @@ public class CPDistributedSharedMemory implements DSM {
                 state.value.set(value);
             }
             
-            state.acknowledgeResponse();
+            int current = state.acknowledgeResponse();
+            logger.debug("Request {} has {} responses out of {} required for quorum", 
+                    requestId, current, state.requiredQuorum);
         }
     }
     
@@ -288,6 +361,7 @@ public class CPDistributedSharedMemory implements DSM {
             ((DSMNode)node).sendDSMBroadcast(message);
         } catch (Exception e) {
             logger.warn("Error during broadcast: {}", e.getMessage());
+            throw new RuntimeException("Broadcast failed: " + e.getMessage(), e);
         }
     }
     
@@ -311,16 +385,25 @@ public class CPDistributedSharedMemory implements DSM {
         final AtomicInteger responses = new AtomicInteger(0);
         final AtomicReference<String> value = new AtomicReference<>();
         final AtomicReference<String> error = new AtomicReference<>();
+        final int requiredQuorum;
         
         QuorumState(int requiredQuorum) {
-            this.latch = new CountDownLatch(1); // We only need to count down once when quorum is reached
+            this.requiredQuorum = requiredQuorum;
+            this.latch = new CountDownLatch(1); // We count down once when the quorum is reached
         }
         
-        void acknowledgeResponse() {
+        /**
+         * Acknowledges a response and returns the current number of responses.
+         * If the required quorum is reached, it will release the latch.
+         * 
+         * @return the current number of responses
+         */
+        int acknowledgeResponse() {
             int current = responses.incrementAndGet();
-            if (current >= latch.getCount()) {
-                latch.countDown();
+            if (current >= requiredQuorum) {
+                latch.countDown(); // Release the latch when quorum is reached
             }
+            return current;
         }
     }
 }
